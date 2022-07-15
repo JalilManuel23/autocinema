@@ -14,10 +14,11 @@
 	if ($res)
 	{
 		move_uploaded_file($tmp_name, $nuevaRuta);     
-		echo 1;
+		echo json_encode("1");
 	}
 	else
 	{
+		echo json_encode("0");
 		echo mysqli_error($conn);
 	}
 ?>
