@@ -1,6 +1,6 @@
 <?php
+  // Conexión a BD
   include("../php/conexion.php");
-
 ?>
 
 <!DOCTYPE html>
@@ -375,98 +375,42 @@
             </div>
             <div class="card-body p-3">
               <div class="row">
-                <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
-                  <div class="card card-blog card-plain">
-                    <div class="position-relative">
-                      <a class="d-block shadow-xl border-radius-xl">
-                        <img src="https://pics.filmaffinity.com/Top_Gun_Maverick-537976462-large.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl">
-                      </a>
-                    </div>
-                    <div class="card-body px-1 pb-0">
-                      <p class="text-gradient text-dark mb-2 text-sm">Género: Acción</p>
-                      <a href="javascript:;">
-                        <h5>
-                          Top Gun: Maverick
-                        </h5>
-                      </a>
-                      <p class="mb-4 text-sm">
-                        Maverick, quien lleva 30 años de servicio, es ahora instructor de pilotos militares. Una última misión, un sacrificio final, obliga a este maestro de los cielos a enfrentar las heridas abiertas del pasado y sus temores más profundos.
-                      </p>
-                      <div class="d-flex align-items-center justify-content-between">
-   
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
-                  <div class="card card-blog card-plain">
-                    <div class="position-relative">
-                      <a class="d-block shadow-xl border-radius-xl">
-                        <img src="https://pics.filmaffinity.com/John_Wick_Cap_tulo_3_Parabellum-953528381-mmed.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
-                      </a>
-                    </div>
-                    <div class="card-body px-1 pb-0">
-                      <p class="text-gradient text-dark mb-2 text-sm">Género: Acción</p>
-                      <a href="javascript:;">
-                        <h5>
-                          Jhon Wick 3: Parabellum
-                        </h5>
-                      </a>
-                      <p class="mb-4 text-sm">
-                        John Wick regresa de nuevo pero con una recompensa sobre su cabeza que persigue unos mercenarios. Tras asesinar a uno de los miembros de su gremio, Wick es expulsado y se convierte en el foco de atención de todos los sicarios de la organización.
-                      </p>
-                      <div class="d-flex align-items-center justify-content-between">
-              
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
-                  <div class="card card-blog card-plain">
-                    <div class="position-relative">
-                      <a class="d-block shadow-xl border-radius-xl">
-                        <img src="https://es.web.img3.acsta.net/pictures/17/10/03/08/45/4260918.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl">
-                      </a>
-                    </div>
-                    <div class="card-body px-1 pb-0">
-                      <p class="text-gradient text-dark mb-2 text-sm">Género: Acción</p>
-                      <a href="javascript:;">
-                        <h5>
-                          Blade Runner 2049
-                        </h5>
-                      </a>
-                      <p class="mb-4 text-sm">
-                        Tres décadas después de los eventos de la primera película, un nuevo blade runner, el oficial de policía K (Ryan Gosling), desentierra un secreto largamente sepultado que podría sumergir a la sociedad en un caos. El descubrimiento de K lo lleva a buscar a Rick Deckard (Harrison Ford), un antiguo blade runner de la policía de Los Ángeles que ha estado desaparecido por 30 años.
-                      </p>
-                      <div class="d-flex align-items-center justify-content-between">
-              
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
-                  <div class="card card-blog card-plain">
-                    <div class="position-relative">
-                      <a class="d-block shadow-xl border-radius-xl">
-                        <img src="https://es.web.img3.acsta.net/pictures/22/03/16/12/44/0138242.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl">
-                      </a>
-                    </div>
-                    <div class="card-body px-1 pb-0">
-                      <p class="text-gradient text-dark mb-2 text-sm">Género: Ciencia Ficción</p>
-                      <a href="javascript:;">
-                        <h5>
-                          Animales Fantásticos: Los Secretos De Dumbledore
-                        </h5>
-                      </a>
-                      <p class="mb-4 text-sm">
-                        Ante una severa amenaza, el magizoólogo Newt Scamander lidera a un valiente grupo de magos y brujas que busca detener al malvado Gellert Grindelwald.
-                      </p>
-                      <div class="d-flex align-items-center justify-content-between">
-              
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <?php
+                  $sql = "SELECT * FROM cartelera";
+                  if($result = mysqli_query($conn, $sql)){
+                      if(mysqli_num_rows($result) > 0){
+                      while($row = mysqli_fetch_array($result)){
+                ?>
+                        <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
+                          <div class="card card-blog card-plain">
+                            <div class="position-relative">
+                              <a class="d-block shadow-xl border-radius-xl">
+                                <?php  
+                                  echo "<img src=".$row['imagen']." alt='img-blur-shadow' class='img-fluid shadow border-radius-xl'>";
+                                ?>
+                              </a>
+                            </div>
+                            <div class="card-body px-1 pb-0">
+                              <p class="text-gradient text-dark mb-2 text-sm">Género: Acción</p>
+                              <a href="javascript:;">
+                                <h5>
+                                  <?php echo $row['nombre']; ?>
+                                </h5>
+                              </a>
+                              <p class="mb-4 text-sm">
+                                <?php echo $row['descripcion']; ?>
+                              </p>
+                              <div class="d-flex align-items-center justify-content-between">
+          
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                <?php
+                      }
+                    }
+                  }
+                ?>
               </div>
             </div>
           </div>
