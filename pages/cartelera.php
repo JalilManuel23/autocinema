@@ -375,7 +375,54 @@
                 <p class="text-sm">Echa un vistazo a los más recientes lanzamientos</p>
               </div>
               <div>
-                <button class="btn btn-primary">Agregar</button>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#agregarPeli">Agregar</button>
+
+                <!-- Modal para editar -->
+                <div class="modal fade" id="agregarPeli" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Agrear película</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                <form id="formAgregar" method="post">
+                                  <div class="row">
+                                    <div class="col-12 mb-3 text-center">
+                                      <img id="imgPrev_editar" style="width: 300px !important; height: 250px !important;" accept="image/*" id="img_editar_foto" class="card-img-top">
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-12 mb-3">
+                                      <label for="formFile" class="form-label">Selecciona una imagen</label>
+                                      <input class="form-control" type="file" accept="image/*" id="img_editar" title="Agrega una imagen" name="img" required>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-6 col-12 mb-3">
+                                      <label for="nombreInput" class="form-label">Nombre de la película</label>
+                                      <input type="text" class="form-control" id="nombreInput" aria-describedby="nombre" name="nombre">
+                                    </div>
+                                    <div class="col-md-6 col-12 mb-3">
+                                      <label for="generoInput" class="form-label">Genero de la película</label>
+                                      <input type="text" class="form-control" id="generoInput" aria-describedby="genero" name="genero">
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="mb-3 col-12">
+                                      <label for="descripcionInput" class="form-label">Descripción</label>
+                                      <textarea class="form-control" id="descripcionInput" name="descripcion" rows="8"></textarea>
+                                    </div>                                    
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    <button type="submit" id="btnAgregar" class="btn btn-primary">Agregar</button>
+                                  </div>
+                                </form>
+                              </div>                              
+                            </div>
+                          </div>
+                        </div>
               </div>
             </div>
             <div class="card-body p-3">
@@ -423,7 +470,7 @@
                                 <input type="hidden" value="<?php echo $row['id_cartelera']?>" name="id">
                                   <div class="row">
                                     <div class="col-12 mb-3 text-center">
-                                      <img id="imgPrev_editar" style="width: 300px !important; height: 250px !important; accept="image/*" id="img_editar_foto" class="card-img-top" alt="<?php echo $row['nombre']?>">
+                                      <img id="imgPrev_editar" style="width: 300px !important; height: 250px !important;" accept="image/*" id="img_editar_foto" class="card-img-top" alt="<?php echo $row['nombre']?>">
                                     </div>
                                   </div>
                                   <div class="row">
