@@ -369,9 +369,14 @@
         
         <div class="col-12 mt-4">
           <div class="card mb-4">
-            <div class="card-header pb-0 p-3">
-              <h6 class="mb-1">CARTELERA</h6>
-              <p class="text-sm">Echa un vistazo a los más recientes lanzamientos</p>
+            <div class="card-header pb-0 p-3 d-flex justify-content-between">
+              <div>
+                <h6 class="mb-1">CARTELERA</h6>
+                <p class="text-sm">Echa un vistazo a los más recientes lanzamientos</p>
+              </div>
+              <div>
+                <button class="btn btn-primary">Agregar</button>
+              </div>
             </div>
             <div class="card-body p-3">
               <div class="row">
@@ -381,28 +386,74 @@
                       if(mysqli_num_rows($result) > 0){
                       while($row = mysqli_fetch_array($result)){
                 ?>
-                        <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
-                          <div class="card card-blog card-plain">
+                        <div class="col-xl-3 col-md-2 mb-xl-0 mb-4">
+                          <div class="card card-blog card-plain shadow p-2">
                             <div class="position-relative">
                               <a class="d-block shadow-xl border-radius-xl">
-                                <?php  
-                                  echo "<img src='../assets/img/cartelera/".$row['imagen']."' alt='img-blur-shadow' class='img-fluid shadow border-radius-xl'>";
-                                ?>
+                                <img src="../assets/img/cartelera/<?php echo $row['imagen']; ?>" alt='<?php echo $row['imagen']; ?>' class='img-fluid shadow border-radius-xl'>
                               </a>
                             </div>
                             <div class="card-body px-1 pb-0">
-                              <p class="text-gradient text-dark mb-2 text-sm">Género: Acción</p>
+                              <p class="text-muted mb-2 text-sm">Género: Acción</p>
                               <a href="javascript:;">
                                 <h5>
                                   <?php echo $row['nombre']; ?>
                                 </h5>
                               </a>
-                              <p class="mb-4 text-sm">
-                                <?php echo $row['descripcion']; ?>
-                              </p>
-                              <div class="d-flex align-items-center justify-content-between">
-          
+                              <p class="mb-4 text-sm"><?php echo $row['descripcion']; ?></p>
+                              <div class="d-flex align-items-center justify-content-start">
+                                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#editar<?php echo $row['id_cartelera']; ?>">Editar</button>
+                                <button class="btn btn-danger" onclick="eliminar('<?php echo $row['id_cartelera'] ?>')">Eliminar</button>
                               </div>
+                            </div>
+                          </div>
+                        </div>
+                        
+
+                        <!-- Modal para editar -->
+                        <div class="modal fade" id="editar<?php echo $row['id_cartelera']; ?>" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Editar <?php echo $row['nombre']; ?></h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                                <form id="formEditar" method="post">
+                                <input type="hidden" value="<?php echo $row['id_cartelera']?>" name="id">
+                                  <div class="row">
+                                    <div class="col-12 mb-3 text-center">
+                                      <img id="imgPrev_editar" style="width: 300px !important; height: 250px !important; accept="image/*" id="img_editar_foto" class="card-img-top" alt="<?php echo $row['nombre']?>">
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-12 mb-3">
+                                      <label for="formFile" class="form-label">Selecciona una imagen</label>
+                                      <input class="form-control" type="file" accept="image/*" id="img_editar" title="Agrega una imagen" name="img" required>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-6 col-12 mb-3">
+                                      <label for="nombreInput" class="form-label">Nombre de la película</label>
+                                      <input type="text" class="form-control" id="nombreInput" aria-describedby="nombre" value="<?php echo $row['nombre']?>" name="nombre">
+                                    </div>
+                                    <div class="col-md-6 col-12 mb-3">
+                                      <label for="generoInput" class="form-label">Genero de la película</label>
+                                      <input type="text" class="form-control" id="generoInput" aria-describedby="genero" value="<?php echo $row['genero']?>" name="genero">
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="mb-3 col-12">
+                                      <label for="descripcionInput" class="form-label">Descripción</label>
+                                      <textarea class="form-control" id="descripcionInput" name="descripcion" rows="8"><?php echo $row['descripcion']?></textarea>
+                                    </div>                                    
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    <button type="submit" id="btnEditar" class="btn btn-primary">Actualizar</button>
+                                  </div>
+                                </form>
+                              </div>                              
                             </div>
                           </div>
                         </div>
@@ -504,181 +555,15 @@
     </div>
   </div>
   <!--   Core JS Files   -->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/chartjs.min.js"></script>
-  <script>
-    var ctx = document.getElementById("chart-bars").getContext("2d");
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="../assets/js/editar_eliminar.js"></script>    
 
-    new Chart(ctx, {
-      type: "bar",
-      data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [{
-          label: "Sales",
-          tension: 0.4,
-          borderWidth: 0,
-          borderRadius: 4,
-          borderSkipped: false,
-          backgroundColor: "#fff",
-          data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
-          maxBarThickness: 6
-        },],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          }
-        },
-        interaction: {
-          intersect: false,
-          mode: 'index',
-        },
-        scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: false,
-              drawOnChartArea: false,
-              drawTicks: false,
-            },
-            ticks: {
-              suggestedMin: 0,
-              suggestedMax: 500,
-              beginAtZero: true,
-              padding: 15,
-              font: {
-                size: 14,
-                family: "Open Sans",
-                style: 'normal',
-                lineHeight: 2
-              },
-              color: "#fff"
-            },
-          },
-          x: {
-            grid: {
-              drawBorder: false,
-              display: false,
-              drawOnChartArea: false,
-              drawTicks: false
-            },
-            ticks: {
-              display: false
-            },
-          },
-        },
-      },
-    });
-
-
-    var ctx2 = document.getElementById("chart-line").getContext("2d");
-
-    var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
-
-    gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.2)');
-    gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-    gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)'); //purple colors
-
-    var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
-
-    gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.2)');
-    gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
-    gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
-
-    new Chart(ctx2, {
-      type: "line",
-      data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [{
-          label: "Mobile apps",
-          tension: 0.4,
-          borderWidth: 0,
-          pointRadius: 0,
-          borderColor: "#cb0c9f",
-          borderWidth: 3,
-          backgroundColor: gradientStroke1,
-          fill: true,
-          data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-          maxBarThickness: 6
-
-        },
-        {
-          label: "Websites",
-          tension: 0.4,
-          borderWidth: 0,
-          pointRadius: 0,
-          borderColor: "#3A416F",
-          borderWidth: 3,
-          backgroundColor: gradientStroke2,
-          fill: true,
-          data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
-          maxBarThickness: 6
-        },
-        ],
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false,
-          }
-        },
-        interaction: {
-          intersect: false,
-          mode: 'index',
-        },
-        scales: {
-          y: {
-            grid: {
-              drawBorder: false,
-              display: true,
-              drawOnChartArea: true,
-              drawTicks: false,
-              borderDash: [5, 5]
-            },
-            ticks: {
-              display: true,
-              padding: 10,
-              color: '#b2b9bf',
-              font: {
-                size: 11,
-                family: "Open Sans",
-                style: 'normal',
-                lineHeight: 2
-              },
-            }
-          },
-          x: {
-            grid: {
-              drawBorder: false,
-              display: false,
-              drawOnChartArea: false,
-              drawTicks: false,
-              borderDash: [5, 5]
-            },
-            ticks: {
-              display: true,
-              color: '#b2b9bf',
-              padding: 20,
-              font: {
-                size: 11,
-                family: "Open Sans",
-                style: 'normal',
-                lineHeight: 2
-              },
-            }
-          },
-        },
-      },
-    });
-  </script>
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {
