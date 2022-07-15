@@ -1,5 +1,5 @@
 <?php
-	include './conexion.php';
+	include 'conexion.php';
 	$foto = $_FILES['imagen'];
 	$nuevaRuta = "../assets/img/cartelera/".$foto['name'];
 	$tmp_name = $foto["tmp_name"];
