@@ -445,7 +445,7 @@ include("../php/conexion.php");
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                              <form id="formEditar" method="post">
+                              <form id="formEditar" method="POST">
                                 <input type="hidden" value="<?php echo $row['id_cartelera'] ?>" name="id">
                                 <div class="row">
                                   <div class="col-12 mb-3 text-center">
