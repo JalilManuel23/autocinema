@@ -4,9 +4,9 @@
 	$nuevaRuta = "../assets/img/cartelera/".$foto['name'];
 	$tmp_name = $foto["tmp_name"];
 	$name = $foto['name'];
-    $genero = $_POST['generoPelicula'];
+    $genero = $_POST['genero'];
     $nombrePelicula = $_POST['tituloPelicula'];
-    $sinopsis = $_POST['sinopsisPelicula'];
+    $sinopsis = $_POST['sinopsis'];
 
 	$sql = "INSERT INTO cartelera (imagen, genero, nombre, descripcion) VALUES ('$name','$genero', '$nombrePelicula', '$sinopsis')";
 	$res = mysqli_query($conn, $sql);

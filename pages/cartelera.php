@@ -420,7 +420,7 @@ include("../php/conexion.php");
                             </a>
                           </div>
                           <div class="card-body px-1 pb-0">
-                            <p class="text-muted mb-2 text-sm">Género: Acción</p>
+                            <p class="text-muted mb-2 text-sm">Género: <?php echo $row['genero']; ?></p>
                             <a href="javascript:;">
                               <h5>
                                 <?php echo $row['nombre']; ?>
