@@ -24,7 +24,7 @@ if (document.getElementById("formEditar")) {
 
     let nombre = formulario.get("nombre").trim();
     let descripcion = formulario.get("descripcion").trim();
-    let genero = formulario.get("genero").trim();
+    let genero = formulario.get("generoPeliculaEditar");
 
     if (nombre == "" || descripcion == "" || genero == "") {
       Swal.fire("Aviso!", "Debes de llenar todos los campos", "warning");

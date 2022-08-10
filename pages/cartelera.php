@@ -361,63 +361,51 @@ include("../php/conexion.php");
                               <label for="generoPelicula" class="form-label">Genero de la película</label><br>
                                 <small id="textAyuda" class="text-muted">Seleccione genero (s)</small><br>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                  <input class="form-check-input check-peli" name="checks[]" type="checkbox" id="inlineCheckbox1" value="Acción">
                                   <label class="form-check-label" for="inlineCheckbox1">Acción</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                  <input class="form-check-input check-peli" name="checks[]" type="checkbox" id="inlineCheckbox2" value="Aventura">
                                   <label class="form-check-label" for="inlineCheckbox2">Aventura</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                                  <input class="form-check-input check-peli" name="checks[]" type="checkbox" id="inlineCheckbox3" value="Ciencia Ficción">
                                   <label class="form-check-label" for="inlineCheckbox3">Ciencia Ficción</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                                  <input class="form-check-input check-peli" name="checks[]" type="checkbox" id="inlineCheckbox4" value="Comedia">
                                   <label class="form-check-label" for="inlineCheckbox4">Comedia</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
+                                  <input class="form-check-input check-peli" name="checks[]" type="checkbox" id="inlineCheckbox5" value="Documental">
                                   <label class="form-check-label" for="inlineCheckbox5">Documental</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
+                                  <input class="form-check-input check-peli" name="checks[]" type="checkbox" id="inlineCheckbox6" value="Drama">
                                   <label class="form-check-label" for="inlineCheckbox6">Drama</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="option7">
+                                  <input class="form-check-input check-peli" name="checks[]" type="checkbox" id="inlineCheckbox7" value="Fantasía">
                                   <label class="form-check-label" for="inlineCheckbox7">Fantasía</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox8" value="option8">
+                                  <input class="form-check-input check-peli" name="checks[]" type="checkbox" id="inlineCheckbox8" value="Musical">
                                   <label class="form-check-label" for="inlineCheckbox8">Musical</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox9" value="option9">
+                                  <input class="form-check-input check-peli" name="checks[]" type="checkbox" id="inlineCheckbox9" value="Romance">
                                   <label class="form-check-label" for="inlineCheckbox9">Romance</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox10" value="option10">
+                                  <input class="form-check-input check-peli" name="checks[]" type="checkbox" id="inlineCheckbox10" value="Supenso">
                                   <label class="form-check-label" for="inlineCheckbox10">Supenso</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox11" value="option11">
+                                  <input class="form-check-input check-peli" name="checks[]" type="checkbox" id="inlineCheckbox11" value="Terror">
                                   <label class="form-check-label" for="inlineCheckbox11">Terror</label>
                                 </div>
-                                <!--<select id="generoPelicula" class="form-control" required>
-                                  <option selected disabled>Elija el género de la película</option>
-                                  <option value="Accion">Acción</option>
-                                  <option value="Aventura">Aventura</option>
-                                  <option value="Ciencia Ficción">Ciencia Ficción</option>
-                                  <option value="Comedia">Comedia</option>
-                                  <option value="Documental">Documental</option>
-                                  <option value="Drama">Drama</option>
-                                  <option value="Fantasia">Fantasía</option>
-                                  <option value="Musical">Musical</option>
-                                  <option value="Romance">Romance</option>
-                                  <option value="Suspenso">Suspenso</option>
-                                  <option value="Terror">Terror</option>
-                                </select>-->
+                                <br><small id="resp" class="text-muted"></small>
+                                <input type="hidden" name="generoPelicula" id="generoPelicula">
                               </div>
                             </div>
                             <div class="row">
@@ -427,11 +415,11 @@ include("../php/conexion.php");
                               </div>
                             </div>
                         </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary btn-sm mb-0" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" id="btnAgregar" class="btn btn-primary btn-sm mb-0">Agregar</button>
-                      </div>
-                        </form>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary btn-sm mb-0" data-bs-dismiss="modal">Cerrar</button>
+                          <button type="submit" id="btnAgregar" class="btn btn-primary btn-sm mb-0">Agregar</button>
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </div>
@@ -501,51 +489,53 @@ include("../php/conexion.php");
                                 <div class="row">
                                   <div class="col-12 mb-3">
                                     <label for="generoPelicula" class="form-label">Genero de la película</label><br>
-                                <small id="textAyuda" class="text-muted">Seleccione genero (s)</small><br>
+                                    <small id="textAyuda" class="text-muted">Seleccione genero (s)</small><br>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox1" value="Acción">
                                   <label class="form-check-label" for="inlineCheckbox1">Acción</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox2" value="Aventura">
                                   <label class="form-check-label" for="inlineCheckbox2">Aventura</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox3" value="Ciencia Ficción">
                                   <label class="form-check-label" for="inlineCheckbox3">Ciencia Ficción</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox4" value="Comedia">
                                   <label class="form-check-label" for="inlineCheckbox4">Comedia</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
+                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox5" value="Documental">
                                   <label class="form-check-label" for="inlineCheckbox5">Documental</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
+                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox6" value="Drama">
                                   <label class="form-check-label" for="inlineCheckbox6">Drama</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="option7">
+                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox7" value="Fantasía">
                                   <label class="form-check-label" for="inlineCheckbox7">Fantasía</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox8" value="option8">
+                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox8" value="Musical">
                                   <label class="form-check-label" for="inlineCheckbox8">Musical</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox9" value="option9">
+                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox9" value="Romance">
                                   <label class="form-check-label" for="inlineCheckbox9">Romance</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox10" value="option10">
+                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox10" value="Supenso">
                                   <label class="form-check-label" for="inlineCheckbox10">Supenso</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox11" value="option11">
+                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox11" value="Terror">
                                   <label class="form-check-label" for="inlineCheckbox11">Terror</label>
                                 </div>
+                                <br><small id="resp" class="text-muted"></small>
+                                <input type="hidden" name="generoPeliculaEditar" id="generoPeliculaEditar">
                                   </div>
                                 </div>
                                 <div class="row">
@@ -555,10 +545,10 @@ include("../php/conexion.php");
                                   </div>
                                 </div>
                               </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary btn-sm mb-0" data-bs-dismiss="modal">Cerrar</button>
-                              <button type="submit" id="btnEditar" class="btn btn-primary btn-sm mb-0">Actualizar</button>
-                            </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary btn-sm mb-0" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="submit" id="btnEditar" class="btn btn-primary btn-sm mb-0">Actualizar</button>
+                              </div>
                               </form>
                           </div>
                         </div>
@@ -681,6 +671,7 @@ include("../php/conexion.php");
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.6"></script>
+  <script src="../assets/js/checkbox.js"></script>
 </body>
 
 </html>
