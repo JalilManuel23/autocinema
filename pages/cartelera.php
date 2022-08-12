@@ -1,6 +1,3 @@
-
-
-
 <!--
 =========================================================
 Equipo: Cartelera
@@ -421,6 +418,25 @@ include("../php/conexion.php");
                               </div>
                             </div>
                             <div class="row">
+                              <div class="col mb-3">
+                                <label for="horarioPelicula" class="form-label">Horario</label>
+                                <input type="text" class="form-control" id="horarioPelicula" aria-describedby="horarioPelícula" name="horarioPelicula" required>
+                              </div>
+                              <div class="col mb-3">
+                                <label for="idiomaPelicula" class="form-label">Idioma</label>
+                                <select id="idiomaPelicula" class="form-control" required>
+                                  <option selected disabled>Elija idioma</option>
+                                  <option value="original">Original</option>
+                                  <option value="espanol">Español</option>
+                                  <option value="subtitulos">Subtitulos</option>
+                                </select>
+                              </div>
+                              <div class="col mb-3">
+                                <label for="duracionPelicula" class="form-label">Duración</label>
+                                <input type="text" class="form-control" id="duracionPelicula" aria-describedby="Duracion Película" name="duracionPelicula" required>
+                              </div>
+                            </div>
+                            <div class="row">
                               <div class="col-12 mb-3">
                                 <label for="sinopsisPelicula" class="form-label">Sinópsis</label>
                                 <textarea class="form-control" id="sinopsisPelicula" name="descripcion" rows="5" required></textarea>
@@ -454,13 +470,25 @@ include("../php/conexion.php");
                             </a>
                           </div>
                           <div class="card-body px-1 pb-0">
-                            <p class="text-muted mb-2 text-sm">Género: <?php echo $row['genero']; ?></p>
+                            <p class="text-muted mb-2 text-sm"><b>Género: </b> <?php echo $row['genero']; ?> </p>
                             <a href="javascript:;">
                               <h5>
                                 <?php echo $row['nombre']; ?>
                               </h5>
                             </a>
-                            <p class="mb-4 text-sm"><?php echo $row['descripcion']; ?></p>
+                            <div class="row">
+                              <div class="col mb-3">
+                                <!--<p class="text-muted mb-2 text-sm"><b>Horario: </b></p>-->
+                              </div>
+                              <div class="col mb-3">
+                                <!--<p class="text-muted mb-2 text-sm"></p>-->
+                              </div>
+                              <div class="col mb-3">
+                                <!--<p class="text-muted mb-2 text-sm"></p>-->
+                              </div>
+                            </div>
+                            <p class="mb-2 text-sm"><b>Sinópsis</b></p>
+                            <p class="mb-2 text-sm"><?php echo $row['descripcion']; ?></p>
                             <div class="ms-auto text-end">
                               <a class="btn btn-link text-danger text-gradient px-3 mb-0" onclick="eliminar('<?php echo $row['id_cartelera'] ?>')" ><i class="far fa-trash-alt me-2"></i>Eliminar</a>
                               <a class="btn btn-link text-dark px-3 mb-0" data-bs-toggle="modal" data-bs-target="#editar<?php echo $row['id_cartelera']; ?>"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Editar</a>
@@ -548,6 +576,25 @@ include("../php/conexion.php");
                                 </div>
                                   </div>
                                 </div>
+                                <div class="row">
+                              <div class="col mb-3">
+                                <label for="horarioPelicula" class="form-label">Horario</label>
+                                <input type="text" class="form-control" id="horarioPelicula" aria-describedby="horarioPelícula" name="horarioPelicula" required>
+                              </div>
+                              <div class="col mb-3">
+                                <label for="idiomaPelicula" class="form-label">Idioma</label>
+                                <select id="idiomaPelicula" class="form-control" required>
+                                  <option selected disabled>Elija idioma</option>
+                                  <option value="original">Original</option>
+                                  <option value="espanol">Español</option>
+                                  <option value="subtitulos">Subtitulos</option>
+                                </select>
+                              </div>
+                              <div class="col mb-3">
+                                <label for="duracionPelicula" class="form-label">Duración</label>
+                                <input type="text" class="form-control" id="duracionPelicula" aria-describedby="Duracion Película" name="duracionPelicula" required>
+                              </div>
+                            </div>
                                 <div class="row">
                                   <div class="col-12 mb-3">
                                     <label for="descripcionInput" class="form-label">Sinópsis</label>
@@ -656,7 +703,7 @@ include("../php/conexion.php");
         <hr class="horizontal dark my-sm-4">
       </div>
     </div>
-  </div>-->
+  </div>
   <!--   Core JS Files   -->
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
   <script src="../assets/js/core/popper.min.js"></script>
