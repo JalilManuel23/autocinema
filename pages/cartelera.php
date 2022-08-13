@@ -352,7 +352,6 @@ include("../php/scripts.php");
       ?>
     </div>
   </main>
-<<<<<<< HEAD
   <?php
   include("../php/personalizacion.php");
   ?>
