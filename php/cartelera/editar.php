@@ -3,12 +3,12 @@
 include './php/conexion/conexion.php';
 
     // error_reporting(0);
-    if (!empty($_POST['nombre']) && !empty($_POST['descripcion']) && !empty($_POST['genero'])){
+    if (!empty($_POST['nombre']) && !empty($_POST['descripcion']) && !empty($_POST['generoPeliculaEditar'])){
 
         $id = $_POST['id'];
         $nombre = $_POST['nombre'];
         $descripcion = $_POST['descripcion'];
-        $genero = $_POST['genero'];
+        $genero = $_POST['generoPeliculaEditar'];
 
             $_FILES['img']['name'] = $id.".jpg";
             $imagen=$_FILES['img']['name'];

@@ -1,21 +1,3 @@
-// $(document).on("change", "#img_editar", function () {
-//   let imgCodificada = URL.createObjectURL(this.files[0]);
-//   $("#imgPrev_editar").attr("src", imgCodificada);
-
-//   let archivoInput = document.getElementById("img_editar").value;
-//   console.log(archivoInput);
-//   let extPermitidas =
-//     /(.gif|.svg|.png|.jpeg|.jpg|.webp|.GIF|.SVG|.PNG|.JPEG|.JPG|.WEBP)$/i;
-//   if (!extPermitidas.exec(archivoInput)) {
-//     document.getElementById("img_editar").value = null;
-//     Swal.fire(
-//       "Aviso!",
-//       "Extensión no valida, asegurate de haber seleccionado una imagen",
-//       "warning"
-//     );
-//   }
-// });
-
 if (document.getElementById("formEditar")) {
   document.getElementById("btnEditar").addEventListener("click", (e) => {
     e.preventDefault();
@@ -24,7 +6,7 @@ if (document.getElementById("formEditar")) {
 
     let nombre = formulario.get("nombre").trim();
     let descripcion = formulario.get("descripcion").trim();
-    let genero = formulario.get("genero").trim();
+    let genero = formulario.get("generoPeliculaEditar");
 
     if (nombre == "" || descripcion == "" || genero == "") {
       Swal.fire("Aviso!", "Debes de llenar todos los campos", "warning");

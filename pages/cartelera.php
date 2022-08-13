@@ -71,50 +71,55 @@ include("../php/scripts.php");
                               <label for="generoPelicula" class="form-label">Genero de la película</label><br>
                                 <small id="textAyuda" class="text-muted">Seleccione genero (s)</small><br>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                                  <input class="form-check-input check-peli" name="checks[]" type="checkbox" id="inlineCheckbox1" value="Acción">
                                   <label class="form-check-label" for="inlineCheckbox1">Acción</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                                  <input class="form-check-input check-peli" name="checks[]" type="checkbox" id="inlineCheckbox2" value="Aventura">
                                   <label class="form-check-label" for="inlineCheckbox2">Aventura</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                                  <input class="form-check-input check-peli" name="checks[]" type="checkbox" id="inlineCheckbox3" value="Ciencia Ficción">
                                   <label class="form-check-label" for="inlineCheckbox3">Ciencia Ficción</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
+                                  <input class="form-check-input check-peli" name="checks[]" type="checkbox" id="inlineCheckbox4" value="Comedia">
                                   <label class="form-check-label" for="inlineCheckbox4">Comedia</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
+                                  <input class="form-check-input check-peli" name="checks[]" type="checkbox" id="inlineCheckbox5" value="Documental">
                                   <label class="form-check-label" for="inlineCheckbox5">Documental</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
+                                  <input class="form-check-input check-peli" name="checks[]" type="checkbox" id="inlineCheckbox6" value="Drama">
                                   <label class="form-check-label" for="inlineCheckbox6">Drama</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="option7">
+                                  <input class="form-check-input check-peli" name="checks[]" type="checkbox" id="inlineCheckbox7" value="Fantasía">
                                   <label class="form-check-label" for="inlineCheckbox7">Fantasía</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox8" value="option8">
+                                  <input class="form-check-input check-peli" name="checks[]" type="checkbox" id="inlineCheckbox8" value="Musical">
                                   <label class="form-check-label" for="inlineCheckbox8">Musical</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox9" value="option9">
+                                  <input class="form-check-input check-peli" name="checks[]" type="checkbox" id="inlineCheckbox9" value="Romance">
                                   <label class="form-check-label" for="inlineCheckbox9">Romance</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox10" value="option10">
+                                  <input class="form-check-input check-peli" name="checks[]" type="checkbox" id="inlineCheckbox10" value="Supenso">
                                   <label class="form-check-label" for="inlineCheckbox10">Supenso</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                  <input class="form-check-input" type="checkbox" id="inlineCheckbox11" value="option11">
+                                  <input class="form-check-input check-peli" name="checks[]" type="checkbox" id="inlineCheckbox11" value="Terror">
                                   <label class="form-check-label" for="inlineCheckbox11">Terror</label>
                                 </div>
+<<<<<<< HEAD
                                 <small id="textAyuda" class="text-muted">Seleccione genero (s)</small><br>
+=======
+                                <br><small id="resp" class="text-muted"></small>
+                                <input type="hidden" name="generoPelicula" id="generoPelicula">
+>>>>>>> main
                               </div>
                             </div>
                             <div class="row">
@@ -124,10 +129,16 @@ include("../php/scripts.php");
                               </div>
                               <div class="col mb-3">
                                 <label for="idiomaPelicula" class="form-label">Idioma</label>
-                                <select id="idiomaPelicula" class="form-control" required>
+                                <select name="idiomaPelicula" id="idiomaPelicula" class="form-control" required>
                                   <option selected disabled>Elija idioma</option>
+<<<<<<< HEAD
                                   <option value="espanol">Español</option>
                                   <option value="subtitulos">Subtitulos</option>
+=======
+                                  <option value="Original">Original</option>
+                                  <option value="Español">Español</option>
+                                  <option value="Subtitulos">Subtitulos</option>
+>>>>>>> main
                                 </select>
                               </div>
                               <div class="col mb-3">
@@ -150,12 +161,21 @@ include("../php/scripts.php");
                                 <textarea class="form-control" id="sinopsisPelicula" name="descripcion" rows="5" required></textarea>
                               </div>
                             </div>
+<<<<<<< HEAD
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-secondary btn-sm mb-0" data-bs-dismiss="modal">Cerrar</button>
                             <button type="submit" id="btnAgregar" class="btn btn-primary btn-sm mb-0">Agregar</button>
                           </div>
                         </form>
+=======
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary btn-sm mb-0" data-bs-dismiss="modal">Cerrar</button>
+                          <button type="submit" id="btnAgregar" class="btn btn-primary btn-sm mb-0">Agregar</button>
+                        </div>
+                      </form>
+>>>>>>> main
                     </div>
                   </div>
                 </div>
@@ -242,6 +262,7 @@ include("../php/scripts.php");
                                 <div class="row">
                                   <div class="col-12 mb-3">
                                     <label for="generoPelicula" class="form-label">Genero de la película</label><br>
+<<<<<<< HEAD
                                      <small id="textAyuda" class="text-muted">Seleccione genero (s)</small><br>
                                     <div class="form-check form-check-inline">
                                       <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
@@ -287,6 +308,55 @@ include("../php/scripts.php");
                                       <input class="form-check-input" type="checkbox" id="inlineCheckbox11" value="option11">
                                       <label class="form-check-label" for="inlineCheckbox11">Terror</label>
                                     </div>
+=======
+                                    <small id="textAyuda" class="text-muted">Seleccione genero (s)</small><br>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox1" value="Acción">
+                                  <label class="form-check-label" for="inlineCheckbox1">Acción</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox2" value="Aventura">
+                                  <label class="form-check-label" for="inlineCheckbox2">Aventura</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox3" value="Ciencia Ficción">
+                                  <label class="form-check-label" for="inlineCheckbox3">Ciencia Ficción</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox4" value="Comedia">
+                                  <label class="form-check-label" for="inlineCheckbox4">Comedia</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox5" value="Documental">
+                                  <label class="form-check-label" for="inlineCheckbox5">Documental</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox6" value="Drama">
+                                  <label class="form-check-label" for="inlineCheckbox6">Drama</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox7" value="Fantasía">
+                                  <label class="form-check-label" for="inlineCheckbox7">Fantasía</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox8" value="Musical">
+                                  <label class="form-check-label" for="inlineCheckbox8">Musical</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox9" value="Romance">
+                                  <label class="form-check-label" for="inlineCheckbox9">Romance</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox10" value="Supenso">
+                                  <label class="form-check-label" for="inlineCheckbox10">Supenso</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox11" value="Terror">
+                                  <label class="form-check-label" for="inlineCheckbox11">Terror</label>
+                                </div>
+                                <br><small id="resp" class="text-muted"></small>
+                                <input type="hidden" name="generoPeliculaEditar" id="generoPeliculaEditar">
+>>>>>>> main
                                   </div>
                                 </div>
                                 <div class="row">
@@ -323,10 +393,10 @@ include("../php/scripts.php");
                                   </div>
                                 </div>
                               </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary btn-sm mb-0" data-bs-dismiss="modal">Cerrar</button>
-                              <button type="submit" id="btnEditar" class="btn btn-primary btn-sm mb-0">Actualizar</button>
-                            </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary btn-sm mb-0" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="submit" id="btnEditar" class="btn btn-primary btn-sm mb-0">Actualizar</button>
+                              </div>
                               </form>
                           </div>
                         </div>
@@ -346,9 +416,90 @@ include("../php/scripts.php");
       ?>
     </div>
   </main>
+<<<<<<< HEAD
   <?php
   include("../php/personalizacion.php");
   ?>
 
+=======
+  <div class="fixed-plugin">
+    <!-- <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
+      <i class="fa fa-cog py-2"> </i>
+    </a> -->
+    <div class="card shadow-lg ">
+      <div class="card-header pb-0 pt-3 ">
+        <div class="float-start">
+          <h5 class="mt-3 mb-0">Personalización</h5>
+          <p class="text-sm">Vea nuestras opciones de panel de control</p>
+        </div>
+        <div class="float-end mt-4">
+          <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
+            <i class="fa fa-close"></i>
+          </button>
+        </div>
+        <!-- End Toggle Button -->
+      </div>
+      <hr class="horizontal dark my-1">
+      <div class="card-body pt-sm-3 pt-0">
+        <!-- Sidebar Backgrounds -->
+        <div>
+          <h6 class="mb-0">Tema</h6>
+        </div>
+        <a href="javascript:void(0)" class="switch-trigger background-color">
+          <div class="badge-colors my-2 text-start">
+            <span class="badge filter bg-gradient-primary active" data-color="primary" onclick="sidebarColor(this)"></span>
+            <span class="badge filter bg-gradient-dark" data-color="dark" onclick="sidebarColor(this)"></span>
+            <span class="badge filter bg-gradient-info" data-color="info" onclick="sidebarColor(this)"></span>
+            <span class="badge filter bg-gradient-success" data-color="success" onclick="sidebarColor(this)"></span>
+            <span class="badge filter bg-gradient-warning" data-color="warning" onclick="sidebarColor(this)"></span>
+            <span class="badge filter bg-gradient-danger" data-color="danger" onclick="sidebarColor(this)"></span>
+          </div>
+        </a>
+        <!-- Sidenav Type -->
+        <div class="mt-3">
+          <p class="text-sm">Elija entre 2 tipos diferentes de sidenav.</p>
+        </div>
+        <div class="d-flex">
+          <button class="btn bg-gradient-primary w-100 px-3 mb-2 active" data-class="bg-transparent" onclick="sidebarType(this)">Transparente</button>
+          <button class="btn bg-gradient-primary w-100 px-3 mb-2 ms-2" data-class="bg-white" onclick="sidebarType(this)">Blanco</button>
+        </div>
+        <p class="text-sm d-xl-none d-block mt-2">Puede cambiar el tipo de guardado lateral solo en la vista de escritorio.</p>
+        <!-- Navbar Fixed -->
+       <div class="mt-3">
+          <h6 class="mb-0">Ver Navegador</h6>
+        </div>
+        <div class="form-check form-switch ps-0">
+          <input class="form-check-input mt-1 ms-auto" type="checkbox" id="navbarFixed" onclick="navbarFixed(this)">
+        </div>
+        <hr class="horizontal dark my-sm-4">
+      </div>
+    </div>
+  </div>
+  <!--   Core JS Files   -->
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="../assets/js/core/popper.min.js"></script>
+  <script src="../assets/js/core/bootstrap.min.js"></script>
+  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="../assets/js/plugins/chartjs.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="../assets/js/agregarPelicula.js"></script>
+  <script src="../assets/js/editar_eliminar.js"></script>
+
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.6"></script>
+  <script src="../assets/js/checkbox.js"></script>
+>>>>>>> main
 </body>
 </html>

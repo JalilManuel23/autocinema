@@ -7,6 +7,9 @@ if (document.getElementById("formAgregar")) {
     formData.append("tituloImg", $("#tituloImg").val());
     formData.append("genero", $("#generoPelicula").val());
     formData.append("sinopsis", $("#sinopsisPelicula").val());
+    formData.append("horario", $("#horarioPelicula").val());
+    formData.append("idioma", $("#idiomaPelicula").val());
+    formData.append("duracion", $("#duracionPelicula").val());
     formData.append("imagen", imagen[0]);
 
     fetch("../php/agregarCartelera.php", {
