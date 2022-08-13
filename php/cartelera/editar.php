@@ -1,7 +1,7 @@
 <?php
 
-    session_start();
-    include 'conexion.php';
+include './php/conexion/conexion.php';
+
     // error_reporting(0);
     if (!empty($_POST['nombre']) && !empty($_POST['descripcion']) && !empty($_POST['genero'])){
 
