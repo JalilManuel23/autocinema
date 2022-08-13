@@ -114,10 +114,7 @@ include("../php/scripts.php");
                                   <input class="form-check-input check-peli" name="checks[]" type="checkbox" id="inlineCheckbox11" value="Terror">
                                   <label class="form-check-label" for="inlineCheckbox11">Terror</label>
                                 </div>
-<<<<<<< HEAD
-=======
                                 <small id="textAyuda" class="text-muted">Seleccione genero (s)</small><br>
->>>>>>> 8e04b871eea504ea45b63e2eacbc91bf486415ee
                                 <br><small id="resp" class="text-muted"></small>
                                 <input type="hidden" name="generoPelicula" id="generoPelicula">
                               </div>
@@ -134,10 +131,6 @@ include("../php/scripts.php");
                                   <option value="Original">Original</option>
                                   <option value="Español">Español</option>
                                   <option value="Subtitulos">Subtitulos</option>
-<<<<<<< HEAD
-=======
-
->>>>>>> 8e04b871eea504ea45b63e2eacbc91bf486415ee
                                 </select>
                               </div>
                               <div class="col mb-3">
@@ -160,10 +153,8 @@ include("../php/scripts.php");
                                 <textarea class="form-control" id="sinopsisPelicula" name="descripcion" rows="5" required></textarea>
                               </div>
                             </div>
-<<<<<<< HEAD
-=======
                         </div>
->>>>>>> 8e04b871eea504ea45b63e2eacbc91bf486415ee
+
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary btn-sm mb-0" data-bs-dismiss="modal">Cerrar</button>
                           <button type="submit" id="btnAgregar" class="btn btn-primary btn-sm mb-0">Agregar</button>
