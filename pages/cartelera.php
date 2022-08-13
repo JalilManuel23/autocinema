@@ -412,11 +412,11 @@ include("../php/conexion.php");
                               </div>
                               <div class="col mb-3">
                                 <label for="idiomaPelicula" class="form-label">Idioma</label>
-                                <select id="idiomaPelicula" class="form-control" required>
+                                <select name="idiomaPelicula" id="idiomaPelicula" class="form-control" required>
                                   <option selected disabled>Elija idioma</option>
-                                  <option value="original">Original</option>
-                                  <option value="espanol">Español</option>
-                                  <option value="subtitulos">Subtitulos</option>
+                                  <option value="Original">Original</option>
+                                  <option value="Español">Español</option>
+                                  <option value="Subtitulos">Subtitulos</option>
                                 </select>
                               </div>
                               <div class="col mb-3">

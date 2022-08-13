@@ -8,8 +8,11 @@
     $genero = $_POST['genero'];
     $nombrePelicula = $_POST['tituloPelicula'];
     $sinopsis = $_POST['sinopsis'];
+    $horario = $_POST['horario'];
+    $idioma = $_POST['idioma'];
+    $duracion = $_POST['duracion'];
 
-	$sql = "INSERT INTO cartelera (imagen, genero, nombre, descripcion) VALUES ('$name','$genero', '$nombrePelicula', '$sinopsis')";
+	$sql = "INSERT INTO cartelera (imagen, genero, nombre, descripcion, horario, idioma, duracion) VALUES ('$name','$genero', '$nombrePelicula', '$sinopsis', '$horario', '$idioma', '$duracion')";
 	$res = mysqli_query($conn, $sql);
 
 	if ($res)
