@@ -178,7 +178,7 @@ include("./partials/scripts.php");
                         <div class="card card-blog card-plain shadow p-2">
                           <div class="position-relative">
                             <a class="d-block shadow-xl border-radius-xl">
-                              <img src="../assets/img/cartelera/<?php echo $row['imagen']; ?>" alt='<?php echo $row['imagen']; ?>' class='img-fluid shadow border-radius-xl'>
+                              <img src="../public/img/cartelera/<?php echo $row['imagen']; ?>" alt='<?php echo $row['imagen']; ?>' class='img-fluid shadow border-radius-xl'>
                             </a>
                           </div>
                           <div class="card-body px-1 pb-0">
@@ -233,7 +233,7 @@ include("./partials/scripts.php");
                                 </div>
                                 <div class="row">
                                   <div class="col-12 mb-3 text-center">
-                                  <img id="imgPrev_editar" style="width: 300px !important; height: 250px !important;" accept="image/*" id="img_editar_foto" class="card-img-top" src="../assets/img/cartelera/<?php echo $row['imagen']; ?>" alt="<?php echo $row['nombre'] ?>">
+                                  <img id="imgPrev_editar" style="width: 300px !important; height: 250px !important;" accept="image/*" id="img_editar_foto" class="card-img-top" src="../public/img/cartelera/<?php echo $row['imagen']; ?>" alt="<?php echo $row['nombre'] ?>">
                                   </div>
                                 </div>
                                 <div class="row">

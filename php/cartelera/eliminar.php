@@ -14,8 +14,8 @@ include '../conexion.php';
         $result = mysqli_fetch_array($consulta_delete);
         $delete = mysqli_query($conn, "DELETE FROM cartelera WHERE id_cartelera = $id ");
         if ($delete) {
-            if(file_exists("../../assets/img/cartelera/".$result['imagen'])){
-                unlink("../../assets/img/cartelera/".$result['imagen']);
+            if(file_exists("../../public/img/cartelera/".$result['imagen'])){
+                unlink("../../public/img/cartelera/".$result['imagen']);
             }
             echo json_encode("correcto");
         }else{
