@@ -12,10 +12,10 @@ Equipo: Cartelera
 -->
 <?php
 // Conexión a BD
-include("../php/conexion/conexion.php");
-include("../php/head.php");
-include("../php/navbarvertical.php");
-include("../php/scripts.php");
+include("../php/conexion.php");
+include("./partials/head.php");
+include("./partials/navbarvertical.php");
+include("./partials/scripts.php");
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +26,7 @@ include("../php/scripts.php");
 <body class="g-sidenav-show bg-gray-100">
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
     <?php
-    include("../php/navbarhorizontal.php");
+    include("./partials/navbarhorizontal.php");
     ?>
 
     <div class="container-fluid py-4">
@@ -140,7 +140,7 @@ include("../php/scripts.php");
                               </div>
                               <div class="col mb-3">
                                 <label for="formatoPelicula" class="form-label">Formato</label>
-                                <select id="formatoPelicula" class="form-control" required>
+                                <select id="formatoPelicula" class="form-control" name="formatoPelicula" required>
                                   <option selected disabled>Elija formato</option>
                                   <option value="2D">2D</option>
                                   <option value="3D">3D</option>
@@ -348,12 +348,12 @@ include("../php/scripts.php");
         </div>
       </div>
       <?php
-      include("../php/footer.php");
+      include("./partials/footer.php");
       ?>
     </div>
   </main>
   <?php
-  include("../php/personalizacion.php");
+  include("./partials/personalizacion.php");
   ?>
 
   <div class="fixed-plugin">
@@ -417,8 +417,9 @@ include("../php/scripts.php");
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/chartjs.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script src="../assets/js/agregarPelicula.js"></script>
-  <script src="../assets/js/editar_eliminar.js"></script>
+
+  <!-- Scripts de los módulos -->
+  <script src="../js/modulos/cartelera.js"></script>
 
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
@@ -433,6 +434,6 @@ include("../php/scripts.php");
   <script async defer src="https://buttons.github.io/buttons.js"></script>
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.6"></script>
-  <script src="../assets/js/checkbox.js"></script>
+  <script src="../js/checkbox.js"></script>
 </body>
 </html>
