@@ -1,6 +1,6 @@
 <?php
 
-include './php/conexion/conexion.php';
+include '../conexion.php';
 
     header("Content-type: application/json; charset=utf-8");
     $id = json_decode(file_get_contents("php://input"), true);
@@ -14,8 +14,8 @@ include './php/conexion/conexion.php';
         $result = mysqli_fetch_array($consulta_delete);
         $delete = mysqli_query($conn, "DELETE FROM cartelera WHERE id_cartelera = $id ");
         if ($delete) {
-            if(file_exists("../assets/img/cartelera/".$result['imagen'])){
-                unlink("../assets/img/cartelera/".$result['imagen']);
+            if(file_exists("../../assets/img/cartelera/".$result['imagen'])){
+                unlink("../../assets/img/cartelera/".$result['imagen']);
             }
             echo json_encode("correcto");
         }else{

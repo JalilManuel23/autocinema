@@ -111,7 +111,7 @@ function eliminar(id) {
         eliminar_pelicula = {
             id: id,
         };
-        fetch(`../php/eliminar.php`, {
+        fetch(`${ruta}/eliminar.php`, {
             method: "POST",
             body: JSON.stringify(eliminar_pelicula),
             headers: { "Content-type": "aplication/json" },
