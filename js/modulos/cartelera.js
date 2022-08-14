@@ -97,57 +97,36 @@ let abrirEditar = (id) => {
 }
 
 if (document.getElementById("formEditar")) {
-    document.getElementById("btnEditar").addEventListener("click", (e) => {
-      e.preventDefault();
-      const formEditar = document.getElementById("formEditar");
-      let formulario = new FormData(formEditar);
+  document.getElementById("btnEditar").addEventListener("click", (e) => {
+    e.preventDefault();
+    const formEditar = document.getElementById("formEditar");
+    let formulario = new FormData(formEditar);
   
-      let nombre = formulario.get("nombre").trim();
-      let descripcion = formulario.get("descripcion").trim();
-      let genero = formulario.get("generoPeliculaEditar");
-  
-      if (nombre == "" || descripcion == "" || genero == "") {
-        Swal.fire("Aviso!", "Debes de llenar todos los campos", "warning");
-      } else if (nombre.length > 0) {
-        if (descripcion.length > 0) {
-          if (genero.length > 0) {
-            fetch(`${ruta}/editar.php`, {
-              method: "POST",
-              body: formulario,
-            })
-              .then((response) => response.json())
-              .then((response) => {
-                if (response == "correcto") {
-                  Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Película actualizada",
-                    showConfirmButton: !1,
-                    timer: 1500,
-                  });
-                  setTimeout(Reedireccion, 500);
-                  function Reedireccion() {
-                    location.href = "./cartelera.php";
-                  }
-                } else if (response == "vacio") {
-                  Swal.fire("Error!", "Datos vacíos", "error");
-                } else if (response == "error") {
-                  Swal.fire("Error!", "Error en el servidor", "error");
-                }
-              });
-          } else {
-            Swal.fire("Aviso!", "El genero no es valido", "warning");
-            formulario = null;
-          }
-        } else {
-          Swal.fire("Aviso!", "La descripcion no es válida", "warning");
-          formulario = null;
+    fetch(`${ruta}/editar.php`, {
+      method: "POST",
+      body: formulario,
+    })
+    .then((response) => response.json())
+    .then((response) => {
+      if (response == "correcto") {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Película actualizada",
+          showConfirmButton: !1,
+          timer: 1500,
+        });
+        setTimeout(Reedireccion, 500);
+        function Reedireccion() {
+          location.href = "./cartelera.php";
         }
-      } else {
-        Swal.fire("Aviso!", "El nombre no es válido", "warning");
-        formulario = null;
+      } else if (response == "vacio") {
+        Swal.fire("Error!", "Datos vacíos", "error");
+      } else if (response == "error") {
+        Swal.fire("Error!", "Error en el servidor", "error");
       }
     });
+  });
 }
   
 // Eliminar pelicula

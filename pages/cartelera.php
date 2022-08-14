@@ -311,7 +311,7 @@ include("./partials/scripts.php");
                   </div>
                   <div class="col mb-3">
                     <label for="idiomaPeliculaEditar" class="form-label">Idioma</label>
-                    <select id="idiomaPeliculaEditar" class="form-control" required>
+                    <select id="idiomaPeliculaEditar" class="form-control" name="idioma" required>
                       <option selected disabled>Elija idioma</option>
                       <option value="espanol">Español</option>
                       <option value="subtitulos">Subtitulos</option>
@@ -324,7 +324,7 @@ include("./partials/scripts.php");
                   </div>
                   <div class="col mb-3">
                     <label for="formatoPeliculaEditar" class="form-label">Formato</label>
-                    <select id="formatoPeliculaEditar" class="form-control" required>
+                    <select id="formatoPeliculaEditar" name="formato" class="form-control" required>
                       <option selected disabled>Elija formato</option>
                       <option value="2D">2D</option>
                       <option value="3D">3D</option>
