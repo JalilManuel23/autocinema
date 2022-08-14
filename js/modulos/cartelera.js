@@ -74,6 +74,28 @@ if (document.getElementById("formAgregar")) {
 }
 
 // Editar pelicula
+let abrirEditar = (id) => {
+  fetch(`${ruta}/traer_por_id.php`, {
+      method: "POST",
+      body: JSON.stringify({id}),
+      headers: { "Content-type": "aplication/json" },
+  })
+  .then((res) => res.json())  
+  .then((data) => {
+    let {id_cartelera, imagen, genero, nombre, descripcion, duracion, formato, horario, idioma} = data;
+
+    document.querySelector("#idEditar").value = id_cartelera;
+    document.querySelector("#tituloEditar").innerText = nombre;
+    document.querySelector("#tituloPeliculaEditar").value = nombre;
+    document.querySelector("#imgPrev_editar").src = `../public/img/cartelera/${imagen}`;
+    document.querySelector("#horarioPeliculaEditar").value = horario;
+    document.querySelector("#idiomaPeliculaEditar").value = idioma;
+    document.querySelector("#duracionPeliculaEditar").value = duracion;
+    document.querySelector("#formatoPeliculaEditar").value = formato;
+    document.querySelector("#descripcionInputEditar").innerText = descripcion;
+  });
+}
+
 if (document.getElementById("formEditar")) {
     document.getElementById("btnEditar").addEventListener("click", (e) => {
       e.preventDefault();
@@ -89,7 +111,7 @@ if (document.getElementById("formEditar")) {
       } else if (nombre.length > 0) {
         if (descripcion.length > 0) {
           if (genero.length > 0) {
-            fetch("../php/editar.php", {
+            fetch(`${ruta}/editar.php`, {
               method: "POST",
               body: formulario,
             })

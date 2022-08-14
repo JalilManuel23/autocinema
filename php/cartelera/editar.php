@@ -1,6 +1,6 @@
 <?php
 
-include './php/conexion/conexion.php';
+include '../conexion.php';
 
     // error_reporting(0);
     if (!empty($_POST['nombre']) && !empty($_POST['descripcion']) && !empty($_POST['generoPeliculaEditar'])){
@@ -14,7 +14,7 @@ include './php/conexion/conexion.php';
             $imagen=$_FILES['img']['name'];
 
             $ruta=$_FILES['img']['tmp_name'];
-            $destino="../assets/img/cartelera/".$imagen;
+            $destino="../../public/img/cartelera/".$imagen;
             copy($ruta,$destino);
 
             $update = mysqli_query($conn, "UPDATE cartelera SET imagen = '$imagen', nombre = '$nombre', descripcion = '$descripcion', genero = '$genero' WHERE id_cartelera = '$id' ");

@@ -178,7 +178,7 @@ include("./partials/scripts.php");
                         <div class="card card-blog card-plain shadow p-2">
                           <div class="position-relative">
                             <a class="d-block shadow-xl border-radius-xl">
-                              <img src="../public/img/cartelera/<?php echo $row['imagen']; ?>" alt='<?php echo $row['imagen']; ?>' class='img-fluid shadow border-radius-xl'>
+                              <img src="../public/img/cartelera/<?php echo $row['imagen']; ?>" alt="<?php echo $row['imagen']; ?>" class="img-fluid shadow border-radius-xl">
                             </a>
                           </div>
                           <div class="card-body px-1 pb-0">
@@ -208,132 +208,8 @@ include("./partials/scripts.php");
                             <p class="mb-2 text-sm"><?php echo $row['descripcion']; ?></p>
                             <div class="ms-auto text-end">
                               <a class="btn btn-link text-danger text-gradient px-3 mb-0" onclick="eliminar('<?php echo $row['id_cartelera'] ?>')" ><i class="far fa-trash-alt me-2"></i>Eliminar</a>
-                              <a class="btn btn-link text-dark px-3 mb-0" data-bs-toggle="modal" data-bs-target="#editar<?php echo $row['id_cartelera']; ?>"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Editar</a>
+                              <button value="<?php echo $row['id_cartelera']; ?>" onclick="abrirEditar(<?php echo $row['id_cartelera']; ?>)"; class="btn btn-link text-dark px-3 mb-0" data-bs-toggle="modal" data-bs-target="#editar"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Editar</a>
                             </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <!-- Modal para editar películas -->
-                      <div class="modal fade" id="editar<?php echo $row['id_cartelera']; ?>" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-                        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Editar <?php echo $row['nombre']; ?></h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              <form id="formEditar" method="POST">
-                                <input type="hidden" value="<?php echo $row['id_cartelera'] ?>" name="id">
-                                <div class="row">
-                                  <div class="col-12 mb-3">
-                                    <label for="formFile" class="form-label">Título de la imagen</label>
-                                    <input class="form-control" class="form-control" id="tituloPelicula" name="nombre" rows="8" value="<?php echo $row['nombre'] ?>" required>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-12 mb-3 text-center">
-                                  <img id="imgPrev_editar" style="width: 300px !important; height: 250px !important;" accept="image/*" id="img_editar_foto" class="card-img-top" src="../public/img/cartelera/<?php echo $row['imagen']; ?>" alt="<?php echo $row['nombre'] ?>">
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-12 mb-3">
-                                    <label for="formFile" class="form-label">Selecciona una imagen</label>
-                                    <input class="form-control" type="file" accept="image/*" id="img_editar" title="Agrega una imagen" name="img" required>
-                                    <small id="textAyuda" class="text-muted">(Formato JPG, PNG, JPEG)</small>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-12 mb-3">
-                                    <label for="generoPelicula" class="form-label">Genero de la película</label><br>
-                                    <small id="textAyuda" class="text-muted">Seleccione genero (s)</small><br>
-                                <div class="form-check form-check-inline">
-                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox1" value="Acción">
-                                  <label class="form-check-label" for="inlineCheckbox1">Acción</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox2" value="Aventura">
-                                  <label class="form-check-label" for="inlineCheckbox2">Aventura</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox3" value="Ciencia Ficción">
-                                  <label class="form-check-label" for="inlineCheckbox3">Ciencia Ficción</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox4" value="Comedia">
-                                  <label class="form-check-label" for="inlineCheckbox4">Comedia</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox5" value="Documental">
-                                  <label class="form-check-label" for="inlineCheckbox5">Documental</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox6" value="Drama">
-                                  <label class="form-check-label" for="inlineCheckbox6">Drama</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox7" value="Fantasía">
-                                  <label class="form-check-label" for="inlineCheckbox7">Fantasía</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox8" value="Musical">
-                                  <label class="form-check-label" for="inlineCheckbox8">Musical</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox9" value="Romance">
-                                  <label class="form-check-label" for="inlineCheckbox9">Romance</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox10" value="Supenso">
-                                  <label class="form-check-label" for="inlineCheckbox10">Supenso</label>
-                                </div>
-                                <div class="form-check form-check-inline">
-                                  <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox11" value="Terror">
-                                  <label class="form-check-label" for="inlineCheckbox11">Terror</label>
-                                </div>
-                                <br><small id="resp" class="text-muted"></small>
-                                <input type="hidden" name="generoPeliculaEditar" id="generoPeliculaEditar">
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col mb-3">
-                                    <label for="horarioPelicula" class="form-label">Horario</label>
-                                    <input type="time" class="form-control" id="horarioPelicula" aria-describedby="Horario Película" name="horarioPelicula" required>
-                                  </div>
-                                  <div class="col mb-3">
-                                    <label for="idiomaPelicula" class="form-label">Idioma</label>
-                                    <select id="idiomaPelicula" class="form-control" required>
-                                      <option selected disabled>Elija idioma</option>
-                                      <option value="espanol">Español</option>
-                                      <option value="subtitulos">Subtitulos</option>
-                                    </select>
-                                  </div>
-                                  <div class="col mb-3">
-                                    <label for="duracionPelicula" class="form-label">Duración</label>
-                                    <input type="number" class="form-control" id="duracionPelicula" aria-describedby="Duracion Película" name="duracionPelicula" required>
-                                    <small id="textAyuda" class="text-muted">Minutos</small>
-                                  </div>
-                                  <div class="col mb-3">
-                                    <label for="formatoPelicula" class="form-label">Formato</label>
-                                    <select id="formatoPelicula" class="form-control" required>
-                                      <option selected disabled>Elija formato</option>
-                                      <option value="2D">2D</option>
-                                      <option value="3D">3D</option>
-                                    </select>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-12 mb-3">
-                                    <label for="descripcionInput" class="form-label">Sinópsis</label>
-                                    <textarea class="form-control" id="descripcionInput" name="descripcion" rows="8"><?php echo $row['descripcion'] ?></textarea>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary btn-sm mb-0" data-bs-dismiss="modal">Cerrar</button>
-                                <button type="submit" id="btnEditar" class="btn btn-primary btn-sm mb-0">Actualizar</button>
-                              </div>
-                              </form>
                           </div>
                         </div>
                       </div>
@@ -347,6 +223,129 @@ include("./partials/scripts.php");
           </div>
         </div>
       </div>
+      <!-- Modal para editar películas -->
+      <div class="modal fade" id="editar" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="tituloEditar">Editar </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form id="formEditar" method="POST">
+                <input type="hidden" id="idEditar" name="id">
+                <div class="row">
+                  <div class="col-12 mb-3">
+                    <label for="formFile" class="form-label">Título de la imagen</label>
+                    <input class="form-control" class="form-control" id="tituloPeliculaEditar" name="nombre" rows="8" value="" required>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 mb-3 text-center">
+                  <img id="imgPrev_editar" style="width: 300px !important; height: 250px !important;" accept="image/*" id="img_editar_foto" class="card-img-top" alt="">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 mb-3">
+                    <label for="formFile" class="form-label">Selecciona una imagen</label>
+                    <input class="form-control" type="file" accept="image/*" id="img_editar" title="Agrega una imagen" name="img">
+                    <small id="textAyuda" class="text-muted">(Formato JPG, PNG, JPEG)</small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 mb-3">
+                    <label for="generoPelicula" class="form-label">Genero de la película</label><br>
+                    <small id="textAyuda" class="text-muted">Seleccione genero (s)</small><br>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox1" value="Acción">
+                      <label class="form-check-label" for="inlineCheckbox1">Acción</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox2" value="Aventura">
+                      <label class="form-check-label" for="inlineCheckbox2">Aventura</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox3" value="Ciencia Ficción">
+                      <label class="form-check-label" for="inlineCheckbox3">Ciencia Ficción</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox4" value="Comedia">
+                      <label class="form-check-label" for="inlineCheckbox4">Comedia</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox5" value="Documental">
+                      <label class="form-check-label" for="inlineCheckbox5">Documental</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox6" value="Drama">
+                      <label class="form-check-label" for="inlineCheckbox6">Drama</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox7" value="Fantasía">
+                      <label class="form-check-label" for="inlineCheckbox7">Fantasía</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox8" value="Musical">
+                      <label class="form-check-label" for="inlineCheckbox8">Musical</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox9" value="Romance">
+                      <label class="form-check-label" for="inlineCheckbox9">Romance</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox10" value="Supenso">
+                      <label class="form-check-label" for="inlineCheckbox10">Supenso</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox11" value="Terror">
+                      <label class="form-check-label" for="inlineCheckbox11">Terror</label>
+                    </div>
+                    <br><small id="resp" class="text-muted"></small>
+                    <input type="hidden" name="generoPeliculaEditar" id="generoPeliculaEditar">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col mb-3">
+                    <label for="horarioPeliculaEditar" class="form-label">Horario</label>
+                    <input type="time" class="form-control" id="horarioPeliculaEditar" aria-describedby="Horario Película" name="horarioPelicula" required>
+                  </div>
+                  <div class="col mb-3">
+                    <label for="idiomaPeliculaEditar" class="form-label">Idioma</label>
+                    <select id="idiomaPeliculaEditar" class="form-control" required>
+                      <option selected disabled>Elija idioma</option>
+                      <option value="espanol">Español</option>
+                      <option value="subtitulos">Subtitulos</option>
+                    </select>
+                  </div>
+                  <div class="col mb-3">
+                    <label for="duracionPeliculaEditar" class="form-label">Duración</label>
+                    <input type="number" class="form-control" id="duracionPeliculaEditar" aria-describedby="Duracion Película" name="duracionPelicula" required>
+                    <small id="textAyuda" class="text-muted">Minutos</small>
+                  </div>
+                  <div class="col mb-3">
+                    <label for="formatoPeliculaEditar" class="form-label">Formato</label>
+                    <select id="formatoPeliculaEditar" class="form-control" required>
+                      <option selected disabled>Elija formato</option>
+                      <option value="2D">2D</option>
+                      <option value="3D">3D</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 mb-3">
+                    <label for="descripcionInputEditar" class="form-label">Sinópsis</label>
+                    <textarea class="form-control" id="descripcionInputEditar" name="descripcion" rows="8"></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm mb-0" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" id="btnEditar" class="btn btn-primary btn-sm mb-0">Actualizar</button>
+              </div>
+              </form>
+          </div>
+      </div>
+    </div>
       <?php
       include("./partials/footer.php");
       ?>
