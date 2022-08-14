@@ -5,25 +5,45 @@ let ruta = "../php/cartelera";
 if (document.getElementById("formAgregar")) {
   document.getElementById("btnAgregar").addEventListener("click", (e) => {
   e.preventDefault();
-  imagen = $("#imgAñadir").prop("files");
-  var formData = new FormData();
-  formData.append("tituloPelicula", $("#tituloPelicula").val());
-  formData.append("tituloImg", $("#tituloImg").val());
-  formData.append("genero", $("#generoPelicula").val());
-  formData.append("sinopsis", $("#sinopsisPelicula").val());
-  formData.append("horario", $("#horarioPelicula").val());
-  formData.append("idioma", $("#idiomaPelicula").val());
-  formData.append("duracion", $("#duracionPelicula").val());
-  formData.append("formato", $("#formatoPelicula").val());
-  formData.append("imagen", imagen[0]);
 
-  fetch(`${ruta}/agregar.php`, {
-      method: "POST",
-      body: formData,
-    })
-    .then((response) => response.json())
-    .then((response) => {
-      if (response == "correcto") {
+  let tituloPelicula = $("#tituloPelicula").val();
+  let tituloImg = $("#tituloImg").val();
+  let genero = $("#generoPelicula").val();
+  let sinopsis = $("#sinopsisPelicula").val();
+  let horario = $("#horarioPelicula").val();
+  let idioma = $("#idiomaPelicula").val();
+  let duracion = $("#duracionPelicula").val();
+  let formato = $("#formatoPelicula").val();
+  let imagen = $("#imgAñadir").val();
+  let imagenFile = $("#imgAñadir").prop("files");
+  
+  // Valida que vayan todos los datos
+  if(
+    tituloPelicula != "" && tituloImg != "" &&
+    genero != "" && sinopsis != "" &&
+    horario != "" && idioma != "" &&
+    duracion != "" && formato != "" && imagen != ""
+  ) {
+    
+    // Si se envian todos los datos los envia a PHP para que los agregué a la BD
+    var formData = new FormData();
+    formData.append("tituloPelicula", tituloPelicula);
+    formData.append("tituloImg", tituloImg);
+    formData.append("genero", genero);
+    formData.append("sinopsis", sinopsis);
+    formData.append("horario", horario);
+    formData.append("idioma", idioma);
+    formData.append("duracion", duracion);
+    formData.append("formato", formato);
+    formData.append("imagen", imagenFile[0]);
+
+    fetch(`${ruta}/agregar.php`, {
+        method: "POST",
+        body: formData,
+      })
+      .then((response) => response.json())
+      .then((response) => {
+        if (response == "correcto") {
           Swal.fire({
               position: "center",
               icon: "success",
@@ -35,8 +55,21 @@ if (document.getElementById("formAgregar")) {
             function Reedireccion() {
               location.href = "./cartelera.php";
             }
+        }
+      });
+    } else {
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Faltan datos",
+        showConfirmButton: !1,
+        timer: 1500,
+      });
+      setTimeout(Reedireccion, 1000);
+      function Reedireccion() {
+        location.href = "./cartelera.php";
       }
-    });
+    }
   });
 }
 
