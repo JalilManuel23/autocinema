@@ -14,7 +14,10 @@ Equipo: Cartelera
 // Conexión a BD
 include("../php/conexion.php");
 include("./partials/head.php");
+
+$activo = "cartelera";
 include("./partials/navbarvertical.php");
+
 include("./partials/scripts.php");
 ?>
 

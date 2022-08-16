@@ -10,7 +10,8 @@
     <div class="collapse navbar-collapse w-auto" id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="../pages/dashboard.php">
+        <?php $clase = ($activo == "dashboard") ? "nav-link active" : "nav-link"; ?>
+          <a class="<?php echo $clase; ?>"  href="../pages/dashboard.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 45 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>Dashboard</title>
@@ -32,7 +33,8 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../pages/cartelera.php">
+        <?php $clase = ($activo == "cartelera") ? "nav-link active" : "nav-link"; ?>
+          <a class="<?php echo $clase; ?>" href="../pages/cartelera.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>Cartelera</title>
@@ -56,7 +58,8 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../pages/cliente.php">
+        <?php $clase = ($activo == "cliente") ? "nav-link active" : "nav-link"; ?>
+          <a class="<?php echo $clase; ?>" href="../pages/cliente.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 46 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>Perfil</title>
@@ -80,7 +83,8 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../pages/productos.php">
+        <?php $clase = ($activo == "productos") ? "nav-link active" : "nav-link"; ?>
+          <a class="<?php echo $clase; ?>" href="../pages/productos.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>Productos</title>
@@ -104,7 +108,8 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../pages/promociones.php">
+        <?php $clase = ($activo == "promociones") ? "nav-link active" : "nav-link"; ?>
+          <a class="<?php echo $clase; ?>" href="../pages/promociones.php">
           <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
                 <svg width="12px" height="12px" viewBox="0 0 40 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                   <title>Promociones</title>
@@ -124,7 +129,8 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../pages/factura.php">
+        <?php $clase = ($activo == "factura") ? "nav-link active" : "nav-link"; ?>
+          <a class="<?php echo $clase; ?>" href="../pages/factura.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 43 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>Facturación</title>
@@ -146,7 +152,8 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../pages/observaciones.php">
+        <?php $clase = ($activo == "observaciones") ? "nav-link active" : "nav-link"; ?>
+          <a class="<?php echo $clase; ?>" href="../pages/observaciones.php">
             <div class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
               <svg width="12px" height="12px" viewBox="0 0 42 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>Observaciones</title>
