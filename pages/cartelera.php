@@ -114,7 +114,6 @@ include("./partials/scripts.php");
                                   <input class="form-check-input check-peli" name="checks[]" type="checkbox" id="inlineCheckbox11" value="Terror">
                                   <label class="form-check-label" for="inlineCheckbox11">Terror</label>
                                 </div>
-                                <small id="textAyuda" class="text-muted">Seleccione genero (s)</small><br>
                                 <br><small id="resp" class="text-muted"></small>
                                 <input type="hidden" name="generoPelicula" id="generoPelicula">
                               </div>
@@ -128,7 +127,6 @@ include("./partials/scripts.php");
                                 <label for="idiomaPelicula" class="form-label">Idioma</label>
                                 <select name="idiomaPelicula" id="idiomaPelicula" class="form-control" required>
                                   <option selected disabled>Elija idioma</option>
-                                  <option value="Original">Original</option>
                                   <option value="Español">Español</option>
                                   <option value="Subtitulos">Subtitulos</option>
                                 </select>
