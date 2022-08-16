@@ -50,4 +50,4 @@
         <hr class="horizontal dark my-sm-4">
       </div>
     </div>
-  </div>
+</div>
