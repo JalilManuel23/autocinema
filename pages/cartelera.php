@@ -183,30 +183,33 @@ include("./partials/scripts.php");
                             </a>
                           </div>
                           <div class="card-body px-1 pb-0">
-                            <p class="text-muted mb-2 text-sm"><b>Género: </b> <?php echo $row['genero']; ?> </p>
-                            <a href="javascript:;">
-                              <h5>
-                                <?php echo $row['nombre']; ?>
-                              </h5>
-                            </a>
                             <div class="row">
-                              <div class="col mb-3">
-                                <!--<p class="text-muted mb-2 text-sm"><b>Horario: </b></p>-->
-                              </div>
-                              <div class="col mb-3">
-                                <!--<p class="text-muted mb-2 text-sm"></p>-->
+                              <div class="col">
+                                <p class="text-muted text-sm pb-0 mb-0"><?php echo $row['genero']; ?> </p>
                               </div>
                             </div>
                             <div class="row">
-                              <div class="col mb-3">
-                                  <!--<p class="text-muted mb-2 text-sm"></p>-->
-                              </div>
-                              <div class="col mb-3">
-                                <!--<p class="text-muted mb-2 text-sm"></p>-->
+                              <div class="col">
+                                <h5 class="ms-2 py-1 mb-0 pb-0"> <?php echo $row['nombre']; ?></h5>
                               </div>
                             </div>
-                            <p class="mb-2 text-sm"><b>Sinópsis</b></p>
-                            <p class="mb-2 text-sm"><?php echo $row['descripcion']; ?></p>
+                            <div class="row">
+                              <div class="col">
+                                <span class="badge text-bg-light"><?php echo $row['idioma']; ?></span>
+                              </div>
+                              <div class="col">
+                                <span class="badge text-bg-secondary"><?php echo $row['duracion']; ?></span>
+                              </div>
+                              <div class="col">
+                                <span class="badge text-bg-dark"><?php echo $row['formato']; ?></span>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col">
+                              <p class="text-muted mb-3 text-sm"><strong class="text-dark">Sinópsis</strong><br> &nbsp;
+                              <?php echo $row['descripcion']; ?></p>
+                              </div>
+                            </div>
                             <div class="ms-auto text-end">
                               <a class="btn btn-link text-danger text-gradient px-3 mb-0" onclick="eliminar('<?php echo $row['id_cartelera'] ?>')" ><i class="far fa-trash-alt me-2"></i>Eliminar</a>
                               <button value="<?php echo $row['id_cartelera']; ?>" onclick="abrirEditar(<?php echo $row['id_cartelera']; ?>)"; class="btn btn-link text-dark px-3 mb-0" data-bs-toggle="modal" data-bs-target="#editar"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Editar</a>
@@ -352,7 +355,7 @@ include("./partials/scripts.php");
       ?>
     </div>
   </main>
-  ¿<?php
+  <?php
   include './partials/personalizacion.php';
   ?>
 
