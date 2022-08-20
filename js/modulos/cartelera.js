@@ -89,9 +89,18 @@ let abrirEditar = (id) => {
     document.querySelector("#tituloPeliculaEditar").value = nombre;
     document.querySelector("#imgPrev_editar").src = `../public/img/cartelera/${imagen}`;
     document.querySelector("#horarioPeliculaEditar").value = horario;
-    document.querySelector("#idiomaPeliculaEditar").value = idioma;
+
+    document.querySelector("#seleccionada").value = idioma;
+    document.querySelector("#seleccionada").innerHTML = idioma;
+    document.querySelector("#noSeleccionada").value = (idioma == "Español") ? "Subtitulos" : "Español";
+    document.querySelector("#noSeleccionada").innerHTML = (idioma == "Español") ? "Subtitulos" : "Español";
+
+    document.querySelector("#seleccionadaFormato").value = formato;
+    document.querySelector("#seleccionadaFormato").innerHTML = formato;
+    document.querySelector("#noSeleccionadaFormato").value = (formato == "2D") ? "3D" : "2D";
+    document.querySelector("#noSeleccionadaFormato").innerHTML = (formato == "2D") ? "3D" : "2D";
+
     document.querySelector("#duracionPeliculaEditar").value = duracion;
-    document.querySelector("#formatoPeliculaEditar").value = formato;
     document.querySelector("#descripcionInputEditar").innerText = descripcion;
   });
 }
