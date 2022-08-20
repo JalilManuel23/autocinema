@@ -75,6 +75,11 @@ if (document.getElementById("formAgregar")) {
 
 // Editar pelicula
 let abrirEditar = (id) => {
+  let checks = document.querySelectorAll('.check-peli');
+  Array.from(checks).map((check) => {
+    return check.checked = false;
+  });
+
   fetch(`${ruta}/traer_por_id.php`, {
       method: "POST",
       body: JSON.stringify({id}),
@@ -89,6 +94,12 @@ let abrirEditar = (id) => {
     document.querySelector("#tituloPeliculaEditar").value = nombre;
     document.querySelector("#imgPrev_editar").src = `../public/img/cartelera/${imagen}`;
     document.querySelector("#horarioPeliculaEditar").value = horario;
+
+    let generosS = genero.split(",");
+    
+    generosS.map((gen) => {
+      document.getElementById(gen).checked = true;
+    });
 
     document.querySelector("#seleccionada").value = idioma;
     document.querySelector("#seleccionada").innerHTML = idioma;

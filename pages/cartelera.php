@@ -261,47 +261,47 @@ include("./partials/scripts.php");
                     <label for="generoPelicula" class="form-label">Genero de la película</label><br>
                     <small id="textAyuda" class="text-muted">Seleccione genero (s)</small><br>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox1" value="Acción">
+                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="Acción" value="Acción">
                       <label class="form-check-label" for="inlineCheckbox1">Acción</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox2" value="Aventura">
+                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="Aventura" value="Aventura">
                       <label class="form-check-label" for="inlineCheckbox2">Aventura</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox3" value="Ciencia Ficción">
+                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="Ciencia Ficción" value="Ciencia Ficción">
                       <label class="form-check-label" for="inlineCheckbox3">Ciencia Ficción</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox4" value="Comedia">
+                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="Comedia" value="Comedia">
                       <label class="form-check-label" for="inlineCheckbox4">Comedia</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox5" value="Documental">
+                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="Documental" value="Documental">
                       <label class="form-check-label" for="inlineCheckbox5">Documental</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox6" value="Drama">
+                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="Drama" value="Drama">
                       <label class="form-check-label" for="inlineCheckbox6">Drama</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox7" value="Fantasía">
+                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="Fantasía" value="Fantasía">
                       <label class="form-check-label" for="inlineCheckbox7">Fantasía</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox8" value="Musical">
+                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="Musical" value="Musical">
                       <label class="form-check-label" for="inlineCheckbox8">Musical</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox9" value="Romance">
+                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="Romance" value="Romance">
                       <label class="form-check-label" for="inlineCheckbox9">Romance</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox10" value="Supenso">
+                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="Supenso" value="Supenso">
                       <label class="form-check-label" for="inlineCheckbox10">Supenso</label>
                     </div>
                     <div class="form-check form-check-inline">
-                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="inlineCheckbox11" value="Terror">
+                      <input class="form-check-input check-peli" name="checksEditar[]" type="checkbox" id="Terror" value="Terror">
                       <label class="form-check-label" for="inlineCheckbox11">Terror</label>
                     </div>
                     <br><small id="resp" class="text-muted"></small>
