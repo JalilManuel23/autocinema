@@ -124,7 +124,7 @@ include("./partials/navbarvertical.php");
             <div class="card-body p-3">
               <div class="row">
               <?php
-                $sql = "SELECT * FROM cartelera";
+                $sql = "SELECT * FROM cartelera LIMIT 1";
                 if ($result = mysqli_query($conn, $sql)) {
                   if (mysqli_num_rows($result) > 0) {
                     while ($row = mysqli_fetch_array($result)) {
