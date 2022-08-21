@@ -6,12 +6,21 @@ include("./partials/head.php");
 $activo = "dashboard";
 include("./partials/navbarvertical.php");
 
-include("./partials/scripts.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Dashboard | Autocinema</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="../js/jquery.rating.pack.js"></script>
+    <script>
+    $(document).ready(function(){
+        $('input.star').rating();
+    });
+    </script>
+  </head>
 
-  <title>Dashboard | Autocinema</title>
 
 <body class="g-sidenav-show bg-gray-100">
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
@@ -114,22 +123,43 @@ include("./partials/scripts.php");
           <div class="card">
             <div class="card-body p-3">
               <div class="row">
+              <?php
+                $sql = "SELECT * FROM cartelera";
+                if ($result = mysqli_query($conn, $sql)) {
+                  if (mysqli_num_rows($result) > 0) {
+                    while ($row = mysqli_fetch_array($result)) {
+                ?>
                 <div class="col-lg-6">
                   <div class="d-flex flex-column h-100">
                     <p class="mb-1 pt-2 text-bold">Película en tendencia</p>
-                    <h5 class="font-weight-bolder">Los Minions: Nace un villano</h5>
-                    <p class="mb-5">La película ha estado en tendencia dentro de los últimos 3 días entre los usuarios de la plataforma.</p>
-                    <a class="text-body text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="javascript:;">
+                    <h5 class="font-weight-bolder"><?php echo $row['nombre']; ?></h5>
+                    <p class="mb-1 text-bold" style="font-size: 12px;"><?php echo $row['genero']; ?></p>
+                    <p class="mb-5"><?php echo $row['descripcion']; ?></p>
+                    <div class="star_content">
+                      <input name="" value="Muy mala" type="radio" class="star"/>
+                      <input name="" value="Mala" type="radio" class="star"/>
+                      <input name="" value="Regular" type="radio" class="star"/>
+                      <input name="" value="Buena" type="radio" class="star" checked="checked"/>
+                      <input name="" value="Muy buena" type="radio" class="star"/>
+                    </div>
+                    <a class="text-body text-sm font-weight-bold mb-0 icon-move-right mt-auto" title="Ir a Cartelera" href="./cartelera.php">
+                      Ver Cartelera
+                      <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
                     </a>
                   </div>
                 </div>
-                <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0">
+                <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0" >
                   <div class="bg-gradient-primary border-radius-lg h-100">
                     <!-- <img src="../assets/img/shapes/waves-white.svg" class="position-absolute h-100 w-50 top-0 d-lg-block d-none" alt="waves"> -->
                     <div class="position-relative d-flex align-items-center justify-content-center h-100">
-                      <img class="w-100 position-relative z-index-2 pt-4" src="http://gnula.nu/wp-content/uploads/2022/07/Minions_The_Rise_of_Gru_poster_usa.jpg" alt="rocket">
+                      <img class="w-100 position-relative z-index-2" style="border-radius:10px;" src="../public/img/cartelera/<?php echo $row['imagen']; ?>" alt="<?php echo $row['imagen']; ?>">
                     </div>
                   </div>
+                  <?php
+                  }
+                }
+              }
+              ?>
                 </div>
               </div>
             </div>
@@ -140,9 +170,11 @@ include("./partials/scripts.php");
             <div class="overflow-hidden position-relative border-radius-lg bg-cover h-100" style="background-image: url('https://cloudfront-us-east-1.images.arcpublishing.com/infobae/DYPYWEWB6RDJPOOPXDSP2AETBY.jpg');">
               <span class="mask bg-gradient-dark"></span>
               <div class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3">
-                <h5 class="text-white font-weight-bolder mb-4 pt-2">Película con Peor Puntuación</h5>
-                <p class="text-white">La película con peor puntuación por parte de los usuarios es: LightYear con una puntuación de -40% en su segunda semana en cartelera. estableciéndose como una de las menos vistas entre el publico general.  </p>
-                <a class="text-white text-sm font-weight-bold mb-0 icon-move-right mt-auto" href="javascript:;">
+                <h5 class="text-white font-weight-bolder mb-4 pt-2">PROMOCIONES</h5>
+                <p class="text-white">La película con peor puntuación por parte de los usuarios es: LightYear con una puntuación de -40% en su segunda semana en cartelera. estableciéndose como una de las menos vistas entre el publico general.</p>
+                <a class="text-white text-sm font-weight-bold mb-0 icon-move-right mt-auto" title="Ir a promociones" href="./promociones.php">
+                  Ver más promociones
+                <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
                 </a>
               </div>
             </div>
@@ -450,5 +482,194 @@ include("./partials/scripts.php");
   <?php
   include './partials/personalizacion.php';
   ?>
+   <!--   Core JS Files   -->
+   <script src="../assets/js/core/popper.min.js"></script>
+  <script src="../assets/js/core/bootstrap.min.js"></script>
+  <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="../assets/js/plugins/chartjs.min.js"></script>
+  <script>
+    var ctx = document.getElementById("chart-bars").getContext("2d");
+
+    new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        datasets: [{
+          label: "Sales",
+          tension: 0.4,
+          borderWidth: 0,
+          borderRadius: 4,
+          borderSkipped: false,
+          backgroundColor: "#fff",
+          data: [450, 200, 100, 220, 500, 100, 400, 230, 500],
+          maxBarThickness: 6
+        }, ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false,
+            },
+            ticks: {
+              suggestedMin: 0,
+              suggestedMax: 500,
+              beginAtZero: true,
+              padding: 15,
+              font: {
+                size: 14,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+              color: "#fff"
+            },
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false
+            },
+            ticks: {
+              display: false
+            },
+          },
+        },
+      },
+    });
+
+
+    var ctx2 = document.getElementById("chart-line").getContext("2d");
+
+    var gradientStroke1 = ctx2.createLinearGradient(0, 230, 0, 50);
+
+    gradientStroke1.addColorStop(1, 'rgba(203,12,159,0.2)');
+    gradientStroke1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+    gradientStroke1.addColorStop(0, 'rgba(203,12,159,0)'); //purple colors
+
+    var gradientStroke2 = ctx2.createLinearGradient(0, 230, 0, 50);
+
+    gradientStroke2.addColorStop(1, 'rgba(20,23,39,0.2)');
+    gradientStroke2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+    gradientStroke2.addColorStop(0, 'rgba(20,23,39,0)'); //purple colors
+
+    new Chart(ctx2, {
+      type: "line",
+      data: {
+        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        datasets: [{
+            label: "Mobile apps",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 0,
+            borderColor: "#cb0c9f",
+            borderWidth: 3,
+            backgroundColor: gradientStroke1,
+            fill: true,
+            data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
+            maxBarThickness: 6
+
+          },
+          {
+            label: "Websites",
+            tension: 0.4,
+            borderWidth: 0,
+            pointRadius: 0,
+            borderColor: "#3A416F",
+            borderWidth: 3,
+            backgroundColor: gradientStroke2,
+            fill: true,
+            data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
+            maxBarThickness: 6
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          }
+        },
+        interaction: {
+          intersect: false,
+          mode: 'index',
+        },
+        scales: {
+          y: {
+            grid: {
+              drawBorder: false,
+              display: true,
+              drawOnChartArea: true,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              padding: 10,
+              color: '#b2b9bf',
+              font: {
+                size: 11,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+          x: {
+            grid: {
+              drawBorder: false,
+              display: false,
+              drawOnChartArea: false,
+              drawTicks: false,
+              borderDash: [5, 5]
+            },
+            ticks: {
+              display: true,
+              color: '#b2b9bf',
+              padding: 20,
+              font: {
+                size: 11,
+                family: "Open Sans",
+                style: 'normal',
+                lineHeight: 2
+              },
+            }
+          },
+        },
+      },
+    });
+  </script>
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Github buttons -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.6"></script>
 </body>
 </html>
