@@ -16,7 +16,7 @@ if (document.getElementById("formAgregar")) {
   let formato = $("#formatoPelicula").val();
   let imagen = $("#imgAñadir").val();
   let imagenFile = $("#imgAñadir").prop("files");
-  
+
   // Valida que vayan todos los datos
   if(
     tituloPelicula != "" && tituloImg != "" &&
@@ -24,7 +24,7 @@ if (document.getElementById("formAgregar")) {
     horario != "" && idioma != "" &&
     duracion != "" && formato != "" && imagen != ""
   ) {
-    
+
     // Si se envian todos los datos los envia a PHP para que los agregué a la BD
     var formData = new FormData();
     formData.append("tituloPelicula", tituloPelicula);
@@ -47,7 +47,7 @@ if (document.getElementById("formAgregar")) {
           Swal.fire({
               position: "center",
               icon: "success",
-              title: "Película agregada",
+              title: "Película agregada exitosamente",
               showConfirmButton: !1,
               timer: 1500,
             });
@@ -85,7 +85,7 @@ let abrirEditar = (id) => {
       body: JSON.stringify({id}),
       headers: { "Content-type": "aplication/json" },
   })
-  .then((res) => res.json())  
+  .then((res) => res.json())
   .then((data) => {
     let {id_cartelera, imagen, genero, nombre, descripcion, duracion, formato, horario, idioma} = data;
 
@@ -96,7 +96,7 @@ let abrirEditar = (id) => {
     document.querySelector("#horarioPeliculaEditar").value = horario;
 
     let generosS = genero.split(",");
-    
+
     generosS.map((gen) => {
       document.getElementById(gen).checked = true;
     });
@@ -121,7 +121,7 @@ if (document.getElementById("formEditar")) {
     e.preventDefault();
     const formEditar = document.getElementById("formEditar");
     let formulario = new FormData(formEditar);
-  
+
     fetch(`${ruta}/editar.php`, {
       method: "POST",
       body: formulario,
@@ -148,7 +148,7 @@ if (document.getElementById("formEditar")) {
     });
   });
 }
-  
+
 // Eliminar pelicula
 function eliminar(id) {
     Swal.fire({
@@ -156,10 +156,10 @@ function eliminar(id) {
         text: "No podras recuperar la información.",
         icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
+        confirmButtonColor: "#344767",
         confirmButtonText: "Aceptar",
+        cancelButtonColor: "#cb0c9f",
         cancelButtonText: "Cancelar",
-        cancelButtonColor: "#d33",
     }).then((result) => {
         if (result.isConfirmed) {
         eliminar_pelicula = {
@@ -175,7 +175,7 @@ function eliminar(id) {
             if (data == "correcto") {
                 Swal.fire({
                 icon: "success",
-                title: "Película eliminada",
+                title: "Película eliminada exitosamente",
                 showConfirmButton: false,
                 timer: 1500,
                 });
@@ -194,4 +194,4 @@ function eliminar(id) {
             });
         }
     });
-}  
+}
