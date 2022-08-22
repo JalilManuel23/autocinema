@@ -180,7 +180,7 @@ include("./partials/navbarvertical.php");
             <div class="row p-3">
               <div class="col-lg-12 mb-lg-0 mb-4">
                 <div class="card">
-                  <div class="card-body">
+                  <div class="card-body"  id="peliculas-space" >
                     <div class="row">
                       <?php
                       $sql = "SELECT * FROM cartelera";
@@ -188,7 +188,7 @@ include("./partials/navbarvertical.php");
                         if (mysqli_num_rows($result) > 0) {
                           while ($row = mysqli_fetch_array($result)) {
                       ?>
-                      <div class="col-lg-7 py-2">
+                      <div class="col-lg-7 py-2" >
                             <div class="d-flex flex-column h-100">
                               <h5 class="font-weight-bolder"><?php echo $row['nombre']; ?></h5>
                               <p class="mb-1 text-bold" style="font-size: 12px;"><?php echo $row['genero']; ?></p>
@@ -211,13 +211,15 @@ include("./partials/navbarvertical.php");
                             </div>
                           </div>
                           <div class="col-lg-5 ms-auto text-center mt-5 mt-lg-0" >
-                          <div class="bg-gradient-primary border-radius-lg h-100">
+                          <div class=" border-radius-lg h-100">
                             <!-- <img src="../assets/img/shapes/waves-white.svg" class="position-absolute h-100 w-50 top-0 d-lg-block d-none" alt="waves"> -->
                             <div class="position-relative d-flex align-items-center justify-content-center h-100">
-                              <img class="w-100 position-relative z-index-2" style="border-radius:10px;" src="../public/img/cartelera/<?php echo $row['imagen']; ?>" alt="<?php echo $row['imagen']; ?>">
+                              <img class="w-65 position-relative z-index-2" style="border-radius:10px; margin-bottom:2rem;" src="../public/img/cartelera/<?php echo $row['imagen']; ?>" alt="<?php echo $row['imagen']; ?>">
                             </div>
                           </div>
+                         
                           </div>
+                        
                       <?php
                          }
                         }
@@ -419,7 +421,7 @@ include("./partials/navbarvertical.php");
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/chartjs.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
 
   <!-- Scripts de los módulos -->
   <script src="../js/modulos/cartelera.js"></script>
