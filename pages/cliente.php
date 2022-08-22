@@ -1,12 +1,22 @@
 <?php
 // Conexión a BD
-include("../php/conexion.php");
-include("./partials/head.php");
+session_start();
 
-$activo = "cliente";
-include("./partials/navbarvertical.php");
+include '../php/conexion.php';
+include 'partials/head.php';
+include 'partials/navbarvertical.php';
+include 'partials/scripts.php';
 
-include("./partials/scripts.php");
+  $email = $_SESSION['email'];
+
+  $uzy = $conn->query("SELECT * FROM clientes WHERE email = '$email'");
+  
+  if ($fila=$uzy->fetch_assoc())
+  {
+
+  }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +27,7 @@ include("./partials/scripts.php");
 <body class="g-sidenav-show bg-gray-100">
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
     <?php
-    include("./partials/navbarhorizontal.php");
+    include("partials/navbarhorizontal.php");
     ?>
     <div class="container-fluid">
       <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('../assets/img/curved-images/curved0.jpg'); background-position-y: 50%;">
@@ -27,13 +37,13 @@ include("./partials/scripts.php");
         <div class="row gx-4">
           <div class="col-auto">
             <div class="avatar avatar-xl position-relative">
-              <img src="https://scontent.fdgo1-1.fna.fbcdn.net/v/t39.30808-6/284135794_7396610227078045_5575278607063086430_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=qqolsYEP5PkAX888BlH&_nc_ht=scontent.fdgo1-1.fna&oh=00_AT9jmRvZDeI28ObF50u0tow8XmwaSB-tQl8GIL_Z8bGLtA&oe=62C971C6" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+              <img src="<?php echo $fila['img']?>" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
             </div>
           </div>
             <div class="col-auto my-auto">
               <div class="h-100">
                 <h5 class="mb-1">
-                  Christian Rodriguez
+                  <?php echo $fila['nombre']?>
                 </h5>
                 <p class="mb-0 font-weight-bold text-sm">
                   Cliente / Consumidor
@@ -177,14 +187,14 @@ include("./partials/scripts.php");
               </div>
               <div class="card-body p-3">
                 <p class="text-sm">
-                  Hola! soy Christian, un aficcionado a las peliculas de Harry Potter y de Acción, puedes llamarme ChrisChampein.
+                  <?php echo $fila['bio']?>
                 </p>
                 <hr class="horizontal gray-light my-4">
                 <ul class="list-group">
-                  <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Nombre Completo:</strong> &nbsp; Christian Eduardo Rodriguez Perez</li>
-                  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Telefono:</strong> &nbsp; (618) 138-53-46</li>
-                  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> &nbsp; l.aloeduardo@live.com.mx</li>
-                  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Dirección:</strong> &nbsp; Durango, Dgo.</li>
+                  <li class="list-group-item border-0 ps-0 pt-0 text-sm"><strong class="text-dark">Nombre Completo:</strong> &nbsp; <?php echo $fila['nombre'], ' ', $fila['ape_paterno'], ' ', $fila['ape_materno']?></li>
+                  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Telefono:</strong> &nbsp; <?php echo $fila['telefono']?></li>
+                  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Email:</strong> &nbsp; <?php echo $fila['email']?></li>
+                  <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Dirección:</strong> &nbsp; <?php echo $fila['calle'], ' ', $fila['col']?></li>
                   <li class="list-group-item border-0 ps-0 pb-0">
                     <strong class="text-dark text-sm">Social:</strong> &nbsp;
                     <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0" href="javascript:;">
@@ -304,13 +314,66 @@ include("./partials/scripts.php");
         </div>
       </div>
       <?php
-      include './partials/footer.php';
+      include '../php/footer.php';
       ?>
     </div>
   </main>
-  <?php
-  include './partials/personalizacion.php';
-  ?>
+  <div class="fixed-plugin">
+    <!--<a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
+      <i class="fa fa-cog py-2"> </i>
+    </a>-->
+    <div class="card shadow-lg ">
+      <div class="card-header pb-0 pt-3 ">
+        <div class="float-start">
+          <h5 class="mt-3 mb-0">Personalización</h5>
+          <p class="text-sm">Vea nuestras opciones de panel de control</p>
+        </div>
+        <div class="float-end mt-4">
+          <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
+            <i class="fa fa-close"></i>
+          </button>
+        </div>
+        <!-- End Toggle Button -->
+      </div>
+      <hr class="horizontal dark my-1">
+      <div class="card-body pt-sm-3 pt-0">
+        <!-- Sidebar Backgrounds -->
+        <div>
+          <h6 class="mb-0">Tema</h6>
+        </div>
+        <a href="javascript:void(0)" class="switch-trigger background-color">
+          <div class="badge-colors my-2 text-start">
+            <span class="badge filter bg-gradient-primary active" data-color="primary"
+              onclick="sidebarColor(this)"></span>
+            <span class="badge filter bg-gradient-dark" data-color="dark" onclick="sidebarColor(this)"></span>
+            <span class="badge filter bg-gradient-info" data-color="info" onclick="sidebarColor(this)"></span>
+            <span class="badge filter bg-gradient-success" data-color="success" onclick="sidebarColor(this)"></span>
+            <span class="badge filter bg-gradient-warning" data-color="warning" onclick="sidebarColor(this)"></span>
+            <span class="badge filter bg-gradient-danger" data-color="danger" onclick="sidebarColor(this)"></span>
+          </div>
+        </a>
+        <!-- Sidenav Type -->
+        <div class="mt-3">
+          <p class="text-sm">Elija entre 2 tipos diferentes de sidenav.</p>
+        </div>
+        <div class="d-flex">
+          <button class="btn bg-gradient-primary w-100 px-3 mb-2 active" data-class="bg-transparent"
+            onclick="sidebarType(this)">Transparente</button>
+          <button class="btn bg-gradient-primary w-100 px-3 mb-2 ms-2" data-class="bg-white"
+            onclick="sidebarType(this)">Blanco</button>
+        </div>
+        <p class="text-sm d-xl-none d-block mt-2">Puede cambiar el tipo de guardado lateral solo en la vista de escritorio.</p>
+        <!-- Navbar Fixed -->
+        <div class="mt-3">
+          <h6 class="mb-0">Ver Navegador</h6>
+        </div>
+        <div class="form-check form-switch ps-0">
+          <input class="form-check-input mt-1 ms-auto" type="checkbox" id="navbarFixed" onclick="navbarFixed(this)">
+        </div>
+        <hr class="horizontal dark my-sm-4">
+      </div>
+    </div>
+  </div>
 </body>
 </html>
 
