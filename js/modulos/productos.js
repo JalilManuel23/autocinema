@@ -532,7 +532,7 @@ $("#formModalComida").on("submit", function (e) {
             }
             trContenido += `</td>
                     <td class="text-xs align-middle">
-                      <i style="cursor:pointer;" class="editButton fas fa-edit me-sm-1 fs-5 text-success" data-tabla="comida" data-id="${comida.id}" data-nombre="${comida.nombre}" data-descripcion="<?php echo $comida['descripcion'] ?>" data-precio="${comida.precio}" data-stock="${comida.stock}"></i>
+                      <i style="cursor:pointer;" class="editButton fas fa-edit me-sm-1 fs-5 text-success" data-tabla="comida" data-id="${comida.id}" data-nombre="${comida.nombre}" data-descripcion="${comida.descripcion}" data-precio="${comida.precio}" data-stock="${comida.stock}"></i>
                           <i style="cursor:pointer;" class="deleteButton fas fa-trash me-sm-1 fs-5 text-danger" data-tabla="comida" data-id="${comida.id}"></i>
                     </td>
                 </tr>`;
@@ -597,7 +597,7 @@ $("#formModalComida").on("submit", function (e) {
             }
             trContenido += `</td>
                     <td class="text-xs align-middle">
-                      <i style="cursor:pointer;" class="editButton fas fa-edit me-sm-1 fs-5 text-success" data-tabla="comida" data-id="${comida.id}" data-nombre="${comida.nombre}" data-descripcion="<?php echo $comida['descripcion'] ?>" data-precio="${comida.precio}" data-stock="${comida.stock}"></i>
+                      <i style="cursor:pointer;" class="editButton fas fa-edit me-sm-1 fs-5 text-success" data-tabla="comida" data-id="${comida.id}" data-nombre="${comida.nombre}" data-descripcion="${comida.descripcion}" data-precio="${comida.precio}" data-stock="${comida.stock}"></i>
                           <i style="cursor:pointer;" class="deleteButton fas fa-trash me-sm-1 fs-5 text-danger" data-tabla="comida" data-id="${comida.id}"></i>
                     </td>
                 </tr>`;
