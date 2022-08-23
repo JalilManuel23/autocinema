@@ -13,6 +13,29 @@ $consulta_cartelera = mysqli_query($conn, "SELECT * FROM cartelera");
   <title>Productos | Autocinema</title>
   <?php include("./partials/head.php"); ?>
 
+  <script>
+    const dfLayerOptions = {
+      installationId: 'ffa12f78-cce0-404a-9dbf-53c293854165',
+      zone: 'us1'
+    };
+
+    
+
+    (function (l, a, y, e, r, s) {
+      r = l.createElement(a); r.onload = e; r.async = 1; r.src = y;
+      s = l.getElementsByTagName(a)[0]; s.parentNode.insertBefore(r, s);
+    })(document, 'script', 'https://cdn.doofinder.com/livelayer/1/js/loader.min.js', function () {
+      doofinderLoader.load(dfLayerOptions);
+    });
+  </script>
+
+  <script src="//cdn.doofinder.com/recommendations/js/doofinderRecommendation.min.js"></script>
+  <df-recommendations
+    hashid="be4d4670c7cc5aacc2b07b704a221135"
+    total-products="10"
+    region="us1"
+  ></df-recommendations>
+
 <body class="g-sidenav-show bg-gray-100">
 
   <?php include("./partials/navbarvertical.php"); ?>
