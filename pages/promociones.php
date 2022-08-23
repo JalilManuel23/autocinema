@@ -7,12 +7,38 @@ $activo = "promociones";
 include("./partials/navbarvertical.php");
 
 include("./partials/scripts.php");
+
+$consulta_promociones = mysqli_query($conn, "SELECT * FROM promociones");
+$consulta_imagenes = mysqli_query($conn, "SELECT imagen FROM promociones");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
   <title>Promociones | Autocinema</title>
 
+  <script>
+    const dfLayerOptions = {
+      installationId: 'ffa12f78-cce0-404a-9dbf-53c293854165',
+      zone: 'us1'
+    };
+
+    
+
+    (function (l, a, y, e, r, s) {
+      r = l.createElement(a); r.onload = e; r.async = 1; r.src = y;
+      s = l.getElementsByTagName(a)[0]; s.parentNode.insertBefore(r, s);
+    })(document, 'script', 'https://cdn.doofinder.com/livelayer/1/js/loader.min.js', function () {
+      doofinderLoader.load(dfLayerOptions);
+    });
+  </script>
+
+  <script src="//cdn.doofinder.com/recommendations/js/doofinderRecommendation.min.js"></script>
+  <df-recommendations
+    hashid="be4d4670c7cc5aacc2b07b704a221135"
+    total-products="10"
+    region="us1"
+  ></df-recommendations>
 <body class="g-sidenav-show bg-gray-100">
   <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
     <?php
@@ -27,16 +53,12 @@ include("./partials/scripts.php");
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
               <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
-            <div class="carousel-inner border-radius-xl py-3">
-              <div class="carousel-item active">
-                <img src="../assets/img/202261518320401.jpg" class="d-block w-100" alt="">
-              </div>
-              <div class="carousel-item">
-                <img src="../assets/img/202261518320401.jpg" class="d-block w-100" alt="">
-              </div>
-              <div class="carousel-item">
-                <img src="../assets/img/202261518320401.jpg" class="d-block w-100" alt="">
-              </div>
+            <div class="carousel-inner border-radius-xl py-3" id="carrouselPromociones">
+              <?php foreach ($consulta_imagenes as $imagenes) { ?>
+                <div class="carousel-item active">
+                  <img src="../public/img/promociones/<?php echo $imagenes['imagen'] ?>" class="d-block w-100" alt="">
+                </div>
+              <?php } ?>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -151,120 +173,58 @@ include("./partials/scripts.php");
             <p class="text-sm">Crear promociones</p>
           </div>
           <div class="card-body p-3">
-            <div class="row">
-              <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
-                <div class="card card-blog card-plain">
-                  <div class="position-relative">
-                    <a class="d-block shadow-xl border-radius-xl">
-                      <img src="../assets/img/2022615183850328.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl">
-                    </a>
-                  </div>
-                  <div class="card-body px-1 pb-0">
-                    <p class="text-gradient text-dark mb-2 text-sm">Promoción #1</p>
-                    <a href="javascript:;">
-                      <h5>
-                        Lightyear
-                      </h5>
-                    </a>
-                    <p class="mb-4 text-sm">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In faucibus neque non eleifend maximus. Nulla aliquet nunc a urna hendrerit, eu porttitor nisl dictum.
-                    </p>
-                    <div class="d-flex align-items-center justify-content-between">
-                      <button type="button" class="btn btn-outline-primary btn-sm mb-0">Enviar</button>
-                      <div class="avatar-group mt-2">
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Elena Morison">
-                          <img alt="Image placeholder" src="../assets/img/team-1.jpg">
-                        </a>
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Milly">
-                          <img alt="Image placeholder" src="../assets/img/team-2.jpg">
-                        </a>
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Nick Daniel">
-                          <img alt="Image placeholder" src="../assets/img/team-3.jpg">
-                        </a>
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Peterson">
-                          <img alt="Image placeholder" src="../assets/img/team-4.jpg">
-                        </a>
+            <div class="row" id="bodyPromociones">
+              <?php 
+                $i = 0;
+                foreach ($consulta_promociones as $promocion) { 
+                $i++;
+              ?>
+                <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
+                  <div class="card card-blog card-plain">
+                    <div class="position-relative">
+                      <a class="d-block shadow-xl border-radius-xl">
+                        <img src="../public/img/promociones/<?php echo $promocion['imagen'] ?>" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl">
+                      </a>
+                    </div>
+                    <div class="card-body px-1 pb-0">
+                      <p class="text-gradient text-dark mb-2 text-sm">Promoción #<?php echo $i ?></p>
+                      <a href="javascript:;">
+                        <h5> <?php echo $promocion['nombre'] ?> </h5>
+                      </a>
+                      <p class="text-sm mb-1">
+                        <?php echo $promocion['descripcion'] ?>
+                      </p>
+                      <p class="mb-4 text-sm text-secondary">Costo: $<?php echo number_format($promocion['precio'], 2) ?> MXN</p>
+                      <p class="text-sm">
+                        Promoción válida del <?php echo strftime('%d de %B a las %I:%M %p', strtotime($promocion['fecha_inicio'])) ?> hasta el <?php echo strftime('%d de %B de %Y a las %I:%M %p', strtotime($promocion['fecha_fin'])) ?>
+                      </p>
+                      <div class="mb-3 d-flex mx-1">
+                        <a style="cursor:pointer;" data-tabla="promociones" class="editButton btn btn-link text-success text-gradient px-3 mb-0" data-id="<?php echo $promocion['id'] ?>" data-imagen="<?php echo $promocion['imagen'] ?>" data-nombre="<?php echo $promocion['nombre'] ?>" data-descripcion="<?php echo $promocion['descripcion'] ?>" data-precio="<?php echo $promocion['precio'] ?>" data-inicio="<?php echo $promocion['fecha_inicio'] ?>" data-fin="<?php echo $promocion['fecha_fin'] ?>"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Editar</a>
+                        <a style="cursor:pointer;" data-tabla="promociones" class="deleteButton btn btn-link text-danger px-3 mb-0" data-id="<?php echo $promocion['id'] ?>" ><i class="far fa-trash-alt me-2"></i>Eliminar</a>
+                      </div>
+                      <div class="d-flex align-items-center justify-content-between">
+                        <button type="button" class="enviarPromo btn btn-outline-primary btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#modalEnviarPromo" data-nombre="<?php echo $promocion['nombre'] ?>">Enviar</button>
+                        <div class="avatar-group">
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Elena Morison">
+                            <img alt="Image placeholder" src="../assets/img/team-1.jpg">
+                          </a>
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Milly">
+                            <img alt="Image placeholder" src="../assets/img/team-2.jpg">
+                          </a>
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Nick Daniel">
+                            <img alt="Image placeholder" src="../assets/img/team-3.jpg">
+                          </a>
+                          <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Peterson">
+                            <img alt="Image placeholder" src="../assets/img/team-4.jpg">
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              <?php } ?>
               <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
-                <div class="card card-blog card-plain">
-                  <div class="position-relative">
-                    <a class="d-block shadow-xl border-radius-xl">
-                      <img src="../assets/img/2022615183427601.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
-                    </a>
-                  </div>
-                  <div class="card-body px-1 pb-0">
-                    <p class="text-gradient text-dark mb-2 text-sm">Promoción #2</p>
-                    <a href="javascript:;">
-                      <h5>
-                        Promo Big
-                      </h5>
-                    </a>
-                    <p class="mb-4 text-sm">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In faucibus neque non eleifend maximus. Nulla aliquet nunc a urna hendrerit, eu porttitor nisl dictum.
-                    </p>
-                    <div class="d-flex align-items-center justify-content-between">
-                      <button type="button" class="btn btn-outline-primary btn-sm mb-0">Enviar</button>
-                      <div class="avatar-group mt-2">
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Nick Daniel">
-                          <img alt="Image placeholder" src="../assets/img/team-3.jpg">
-                        </a>
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Peterson">
-                          <img alt="Image placeholder" src="../assets/img/team-4.jpg">
-                        </a>
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Elena Morison">
-                          <img alt="Image placeholder" src="../assets/img/team-1.jpg">
-                        </a>
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Milly">
-                          <img alt="Image placeholder" src="../assets/img/team-2.jpg">
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
-                <div class="card card-blog card-plain">
-                  <div class="position-relative">
-                    <a class="d-block shadow-xl border-radius-xl">
-                      <img src="../assets/img/202261518352952.jpg" alt="img-blur-shadow" class="img-fluid shadow border-radius-xl">
-                    </a>
-                  </div>
-                  <div class="card-body px-1 pb-0">
-                    <p class="text-gradient text-dark mb-2 text-sm">Promoción #3</p>
-                    <a href="javascript:;">
-                      <h5>
-                        Mini costillitas
-                      </h5>
-                    </a>
-                    <p class="mb-4 text-sm">
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. In faucibus neque non eleifend maximus. Nulla aliquet nunc a urna hendrerit, eu porttitor nisl dictum.
-                    </p>
-                    <div class="d-flex align-items-center justify-content-between">
-                      <button type="button" class="btn btn-outline-primary btn-sm mb-0">Enviar</button>
-                      <div class="avatar-group mt-2">
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Peterson">
-                          <img alt="Image placeholder" src="../assets/img/team-4.jpg">
-                        </a>
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Nick Daniel">
-                          <img alt="Image placeholder" src="../assets/img/team-3.jpg">
-                        </a>
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Ryan Milly">
-                          <img alt="Image placeholder" src="../assets/img/team-2.jpg">
-                        </a>
-                        <a href="javascript:;" class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Elena Morison">
-                          <img alt="Image placeholder" src="../assets/img/team-1.jpg">
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
-                <div class="card h-100 card-plain border">
+                <div style="cursor: pointer;" class="addButton card h-100 card-plain border" data-tabla="promociones" data-bs-toggle="modal" data-bs-target="#modalAgregarEditarPromociones">
                   <div class="card-body d-flex flex-column justify-content-center text-center">
                     <a href="javascript:;">
                       <i class="fa fa-plus text-secondary mb-3"></i>
@@ -282,9 +242,106 @@ include("./partials/scripts.php");
       include './partials/footer.php';
       ?>
     </div>
+
+    <!-- Modal para promociones -->
+    <div class="modal fade" id="modalAgregarEditarPromociones" tabindex="-1" aria-labelledby="staticBackdropLabelPromociones" aria-hidden="true" style="position: absolute !importanr; z-index: 999999999999 !important">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="tituloModalPromociones">Agregar promocion</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+            <form id="formModalPromociones" method="POST">
+              <div class="modal-body">
+                <input type="hidden" id="idInputPromociones" name="id">
+                <div class="row">
+                  <div class="col-12 mb-3">
+                    <label for="imagenInputPromociones" class="form-label">Selecciona una imagen</label>
+                    <input class="form-control" type="file" accept="image/*" id="imagenInputPromociones" title="Agrega una imagen" name="img" required>
+                    <small id="textAyuda" class="text-muted">(Formato JPG, PNG, JPEG)</small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 mb-3">
+                    <label for="nombreInputPromociones" class="form-label">Nombre de la promocion</label>
+                    <input type="text" class="form-control" id="nombreInputPromociones" aria-describedby="Nombre de la promocion" name="nombre" required>
+                  </div>
+                  <div class="col-12 mb-3">
+                    <label for="descripcionInputPromociones" class="form-label">Descripción de la promocion</label>
+                    <textarea class="form-control" id="descripcionInputPromociones" name="descripcion" rows="5" required></textarea>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 mb-3">
+                    <label for="precioInputPromociones" class="form-label">Precio</label>
+                    <input type="number" class="form-control" id="precioInputPromociones" aria-describedby="Precio de la promocion" name="precio" required>
+                  </div>                
+                </div>
+                <div class="row">
+                  <div class="col-md-6 col-12 mb-3">
+                    <label for="inicioInputPromociones" class="form-label">Inicio de la promoción</label>
+                    <input type="datetime-local" class="form-control" id="inicioInputPromociones" aria-describedby="Inicio de la promoción" name="inicio" required>
+                  </div>
+                  <div class="col-md-6 col-12 mb-3">
+                    <label for="finInputPromociones" class="form-label">Fin de la promoción</label>
+                    <input type="datetime-local" class="form-control" id="finInputPromociones" aria-describedby="Fin de la promoción" name="fin" required>
+                  </div>
+                </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm mb-0" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" id="btnSubmitPromociones" class="btn btn-primary btn-sm mb-0">Agregar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para eviar promociones -->
+    <div class="modal fade" id="modalEnviarPromo" tabindex="-1" aria-labelledby="staticBackdropLabelPromociones" aria-hidden="true" style="position: absolute !importanr; z-index: 999999999999 !important">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="tituloModalPromociones">Enivar promocion</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+            <form id="formModalEnviar" method="POST">
+              <div class="modal-body">
+                <div class="row mb-3">
+                  <div class="col-12">
+                    <p class="mb-0">
+                      Se encontraron a los siguientes usuarios a los cuales les puede interesar esta promoción con base en las estadísticas obtenidas. 
+                    </p>
+                    <p>                      
+                      Envíales un correo electrónico para que conozcan la nueva promoción: <strong>"<span id="nombrePromocion"></span>."</strong>
+                    </p>
+
+                  </div>
+                  <div class="col-12">
+                    <ul class="list-group" id="list-group"></ul>
+                  </div>
+                </div>                
+                <div class="row">                  
+                  <div class="col-12 mb-3">
+                    <label for="descripcionInputPromociones" class="form-label">Escribe un mensaje</label>
+                    <textarea class="form-control" id="descripcionInputPromociones" name="descripcion" rows="5" required></textarea>
+                  </div>
+                  <div class="col-12 mb-3">
+                  </div>
+                </div>                
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-sm mb-0" data-bs-dismiss="modal">Cerrar</button>
+                <button type="submit" id="btnEnviarPromociones" class="btn btn-primary btn-sm mb-0">Enviar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   </main>
   <?php
   include './partials/personalizacion.php';
   ?>
+  <script src="../js/modulos/productos.js"></script>
 </body>
 </html>

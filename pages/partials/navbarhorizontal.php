@@ -14,7 +14,7 @@
           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
             <div class="input-group">
               <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-              <input type="text" class="form-control" placeholder="Escriba aquí...">
+              <input type="text" id="search-box" class="input-search form-control" name='q' placeholder="Escriba aquí...">
             </div>
           </div>
           <ul class="navbar-nav  justify-content-end">

@@ -56,8 +56,8 @@ include("./partials/navbarvertical.php");
                   <i class="fas fa-plus"></i>&nbsp;&nbsp;Agregar película
                 </a>
                 <!-- Modal para agregar película -->
-                <div class="modal fade" id="agregarPeli" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-                  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal fade" id="agregarPeli" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"   style="position: absolute !importanr; z-index: 999999999999 !important">
+                  <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
                       <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Agregar película</h5>
@@ -285,8 +285,8 @@ include("./partials/navbarvertical.php");
         </div>
       </div>
       <!-- Modal para editar películas -->
-      <div class="modal fade" id="editar" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
-        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal fade" id="editar" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"   style="position: absolute !importanr; z-index: 999999999999 !important">
+        <div class="modal-dialog modal-lg modal-dialog-centered ">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="tituloEditar">Editar </h5>
