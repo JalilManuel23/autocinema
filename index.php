@@ -1,3 +1,50 @@
+<?php
+
+  include_once 'php/conexion.php';
+
+  session_start();
+
+  if(isset($_SESSION)){
+    // session_unset();
+    session_destroy();
+  }
+
+  if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $us = $_POST['email'];
+    $ps = $_POST['pass'];
+
+    require_once("php/conexion.php");
+
+    $consul="SELECT email, pass FROM clientes WHERE email='$us' AND pass='$ps'";
+    $query=mysqli_query($conn,$consul) or die ("Ocurrio un error, intentalo mas tarde");
+
+    if($clm=mysqli_fetch_array($query))
+    {
+      $priv=$clm['priv'];
+    }
+
+    if(mysqli_num_rows($query)>0)
+    {
+      session_start();
+      $_SESSION['email']=$us;
+      $_SESSION['pass']=$ps;
+
+      if($priv=="")
+      $_SESSION['priv']="";{
+          header('location:pages/cliente.php');
+      }
+    }
+    else{
+        echo "<script>alert('Correo y/o Usuario Incorrectos, Intentelo de nuevo porfavor')</script>";
+    }
+
+  }
+
+  
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,28 +79,28 @@
                   <p class="mb-0">Ingrese su correo electrónico y contraseña para iniciar sesión</p>
                 </div>
                 <div class="card-body">
-                  <form role="form">
+                  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" role="form" method="POST">
                     <label>Correo electrónico</label>
                     <div class="mb-3">
-                      <input type="email" class="form-control" placeholder="Correo electrónico" aria-label="Email" aria-describedby="email-addon">
+                      <input type="email" name="email" class="form-control" placeholder="Correo electrónico" aria-label="Email" aria-describedby="email-addon">
                     </div>
                     <label>Contraseña</label>
                     <div class="mb-3">
-                      <input type="email" class="form-control" placeholder="Contraseña" aria-label="Password" aria-describedby="password-addon">
+                      <input type="password" name="pass" class="form-control" placeholder="Contraseña" aria-label="Password" aria-describedby="password-addon">
                     </div>
                     <!--<div class="form-check form-switch">
                       <input class="form-check-input" type="checkbox" id="rememberMe" checked="">
                       <label class="form-check-label" for="rememberMe">Recordarme</label>
                     </div>-->
                     <div class="text-center">
-                      <button type="button" class="btn bg-gradient-info w-100 mt-4 mb-0" title="Presione para Iniciar Sesión">Iniciar Sesión</button>
+                      <button type="submit" class="btn bg-gradient-info w-100 mt-4 mb-0" title="Presione para Iniciar Sesión">Iniciar Sesión</button>
                     </div>
                   </form>
                 </div>
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                   <p class="mb-5 text-sm mx-auto">
                     ¿Haz olvidado tu contraseña?
-                    <a href="./pages/haz-olvidado-contrasena.html" class="text-info text-gradient font-weight-bold" title="Presiona aquí">Presiona aquí</a>
+                    <a href="javascript:;" class="text-info text-gradient font-weight-bold">Presiona aquí</a>
                   </p>
                 </div>
               </div>
