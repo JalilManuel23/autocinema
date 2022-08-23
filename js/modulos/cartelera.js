@@ -122,7 +122,7 @@ if (document.getElementById("formEditar")) {
     const formEditar = document.getElementById("formEditar");
     let formulario = new FormData(formEditar);
 
-    fetch(`${ruta}/editar.php`, {
+    fetch('../php/cartelera/editar.php', {
       method: "POST",
       body: formulario,
     })
