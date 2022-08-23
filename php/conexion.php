@@ -1,6 +1,6 @@
 <?php
 
-$conex=new mysqli('127.0.0.1','guty','purautd','tabla_clientes');
+$conex=new mysqli('127.0.0.1','guty','purautd','autocinema');
 
 /* comprobar la conexión */
 if ($conex->connect_errno) {
