@@ -1,0 +1,214 @@
+/* Fuentes y estilos */
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
+/* ---------------------- */
+
+body {
+  margin: 5px auto;
+  padding: 20px 5px;
+  background-color: rgb(237,135,135);
+}
+
+.wrapper {
+  position: relative;
+  width: 800px;
+  height: 700px;
+  margin: auto;
+  background-color: #fff;
+}
+.wrapper ul {
+  list-style-type: none;
+}
+.wrapper .box {
+  position: relative;
+  display: list-item;
+  width: 400px;
+  height: 120px;
+  background-color: #fff;
+  margin: auto;
+  list-style-type: none;
+  top: 20px;
+  margin-bottom: 20px;
+  -webkit-box-shadow: 0 10px 6px -6px #777;
+	-moz-box-shadow: 0 10px 6px -6px #777;
+	box-shadow: 0 10px 6px -6px #777;
+}
+.wrapper .box .opciones {
+  position: absolute;
+  width: 90px;
+  height: 120px;
+  top: 0px;
+  left: 0px;
+  z-index: 9999;
+  background-color: 0;
+  overflow: hidden;
+  opacity: 0;
+  -webkit-transition: all .3s linear;
+  -moz-transition: all .3s linear;
+  transition: all .3s linear;
+}
+.wrapper .box .opciones:hover  {
+  width: 80%;
+  left: 0%;
+  opacity: 1;
+  background-color: rgba(44,44,44,0.222);
+}
+.wrapper .box .opciones li {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  left: 60px;
+  height: 120px;
+  width: 70px;
+  margin: 0;
+  background-color: 0;
+}
+.wrapper .box .opciones li span {
+  font-size: 2em;
+  top: 40px;
+  position: relative;
+  cursor: pointer;
+}
+.wrapper .box .opciones li .fa-reply {
+  color: rgb(162,217,222);
+  opacity: 0.6;
+}
+.wrapper .box .opciones li .fa-heart {
+ color: rgb(222,167,162); 
+  opacity: 0.6;
+}
+.wrapper .box .opciones li .fa-plus{
+ color: rgb(162,222,197); 
+  opacity: 0.6;
+}
+.wrapper .box .opciones li span:hover {
+  opacity: 1;
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  transform: scale(1.2);
+}
+.wrapper .box img {
+  position: absolute;
+  width: 95px;
+  height: 100%;
+  border-right: 2px solid #1e88e5;
+}
+.wrapper .box .head {
+  height: 40%;
+  width: 100%;
+  border-bottom: 1px solid grey;
+}
+.wrapper .box h5 {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  color: rgb(16,2,2);
+  margin-left: 80px;
+  position: relative;
+  top: 5px;
+}
+.wrapper .box a {
+  text-align: center;
+  position: relative;
+  font-size: 9px;
+  color: #000;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 100;
+  top: -12px;
+  margin-left: 180px;
+}
+.wrapper article {
+  position: relative;
+  margin: auto;
+  width: 70%;
+  height: 55%;
+  margin-left: 115px;
+  margin-top: -5px;
+}
+.wrapper article p {
+  font-size: 11px;
+  font-family: 'Open Sans', sans-serif;
+  color: grey;
+  max-width: 100%;
+}
+/* ------------------------------ */
+/* una vez que se responde a un mensaje... */
+.wrapper .responde .box {
+  position: relative;
+  display: list-item;
+  width: 350px;
+  height: 95px;
+  background-color: #fff;
+  margin: auto;
+  list-style-type: none;
+  top: 20px;
+  margin-bottom: 20px;
+  -webkit-box-shadow: 0 8px 4px -4px rgb(230,230,230);
+	-moz-box-shadow: 0 8px 4px -4px rgb(230,230,230);
+	box-shadow: 0 8px 4px -4px rgb(230,230,230);
+  border-top-left-radius: 80px;
+  border-bottom-left-radius: 80px;
+}
+.wrapper .responde .box img {
+  position: absolute;
+  width: 90px;
+  border-radius: 100%;
+  height: 95px;
+  border: 2px solid #1e88e5;
+}
+.wrapper .responde .box .head {
+  height: 40%;
+  width: 100%;
+  border-bottom: 1px solid grey;
+}
+.wrapper .responde .box h5 {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  color: rgb(16,2,2);
+  margin-left: 80px;
+  position: relative;
+  top: 5px;
+}
+.wrapper .responde .box a {
+  text-align: center;
+  position: relative;
+  font-size: 9px;
+  color: #000;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 100;
+  top: -21px;
+  margin-left: 140px;
+}
+.wrapper .responde article {
+  position: relative;
+  margin: auto;
+  width: 70%;
+  height: 55%;
+  margin-left: 115px;
+  margin-top: -5px;
+}
+.wrapper .responde article p {
+  font-size: 11px;
+  font-family: 'Open Sans', sans-serif;
+  color: grey;
+  max-width: 100%;
+}
+.wrapper ul .responde .opciones {
+  border-bottom-left-radius: 80px;
+  border-top-left-radius: 80px;
+  height: 95px;
+}
+.wrapper ul .responde .opciones:hover {
+  width: 350px;
+}
+/* Línea que separa los mensajes */
+.wrapper ul .responde .linea {
+  position: absolute;
+  display: flex;
+  width: 5px;
+  height: 20px;
+  left: 40px;
+  margin: auto;
+  top: -20px;
+  background-color: rgba(122,122,122,0.477);
+}
