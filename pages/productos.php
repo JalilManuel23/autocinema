@@ -6,6 +6,9 @@ $activo = "productos";
 $consulta_comida = mysqli_query($conn, "SELECT * FROM comida");
 $consulta_boletos = mysqli_query($conn, "SELECT * FROM boletos");
 $consulta_cartelera = mysqli_query($conn, "SELECT * FROM cartelera");
+
+date_default_timezone_set('America/Mexico_city');
+setlocale(LC_ALL, '');
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -179,7 +182,7 @@ $consulta_cartelera = mysqli_query($conn, "SELECT * FROM cartelera");
   </main>
 
   <!-- Modal para comida -->
-  <div class="modal fade" id="modalAgregarEditarComida" tabindex="-1" aria-labelledby="staticBackdropLabelComida" aria-hidden="true"  style="position: absolute !importanr; z-index: 999999999999 !important">
+  <div class="modal fade" id="modalAgregarEditarComida" tabindex="-1" aria-labelledby="staticBackdropLabelComida" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
@@ -220,7 +223,7 @@ $consulta_cartelera = mysqli_query($conn, "SELECT * FROM cartelera");
   </div>
 
   <!-- Modal para boletos -->
-  <div class="modal fade" id="modalAgregarEditarBoletos" tabindex="-1" aria-labelledby="staticBackdropLabelBoletos" aria-hidden="true" style="position: absolute !importanr; z-index: 999999999999 !important">
+  <div class="modal fade" id="modalAgregarEditarBoletos" tabindex="-1" aria-labelledby="staticBackdropLabelBoletos" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
