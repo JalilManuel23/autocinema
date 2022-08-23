@@ -78,18 +78,7 @@ $(document).on("click", ".editButton", function (e) {
     $("#idInputBoletos").val($(this).data("id"));
     $("#funcionInputBoletos").val($(this).data("funcion"));
 
-    Number.prototype.padLeft = function (base, chr) {
-      var len = String(base || 10).length - String(this).length + 1;
-      return len > 0 ? new Array(len).join(chr || "0") + this : this;
-    };
-    var options = {
-      hour: "numeric",
-      minute: "numeric",
-      hour12: true,
-    };
-
     let fecha_boletos = $(this).data("fecha").replace(" ", "T");
-
     $("#fecha_horaInputBoletos").val(fecha_boletos);
     $("#precioInputBoletos").val($(this).data("precio"));
     $("#stockInputBoletos").val($(this).data("stock"));
@@ -105,7 +94,12 @@ $(document).on("click", ".editButton", function (e) {
     );
     $("#tituloModalPromociones").text("Editar promociones");
     $("#idInputPromociones").val($(this).data("id"));
-    // $("#imagenInputPromociones").val($(this).data("imagen"));
+    // $("#imgPrev_editar").val($(this).data("imagen"));
+    let foto = $(this).data("imagen");
+    document.querySelector(
+      "#imgPrev_editar"
+    ).src = `../public/img/promociones/${foto}`;
+
     $("#imagenInputPromociones").prop("required", false);
     $("#nombreInputPromociones").val($(this).data("nombre"));
     $("#descripcionInputPromociones").val($(this).data("descripcion"));

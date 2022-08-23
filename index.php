@@ -10,12 +10,12 @@
   }
 
   if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $us = $_POST['email'];
+    $us = $_POST['usuario'];
     $ps = $_POST['pass'];
 
     require_once("php/conexion.php");
 
-    $consul="SELECT email, pass FROM clientes WHERE email='$us' AND pass='$ps'";
+    $consul="SELECT usuario, pass FROM usuarios WHERE usuario='$us' AND pass='$ps'";
     $query=mysqli_query($conn,$consul) or die ("Ocurrio un error, intentalo mas tarde");
 
     if($clm=mysqli_fetch_array($query))
@@ -26,7 +26,7 @@
     if(mysqli_num_rows($query)>0)
     {
       session_start();
-      $_SESSION['email']=$us;
+      $_SESSION['usuario']=$us;
       $_SESSION['pass']=$ps;
 
       if($priv=="")
@@ -80,11 +80,11 @@
                 </div>
                 <div class="card-body">
                   <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" role="form" method="POST">
-                    <label>Correo electrónico</label>
+                    <label>Nombre de Usuario: </label>
                     <div class="mb-3">
-                      <input type="email" name="email" class="form-control" placeholder="Correo electrónico" aria-label="Email" aria-describedby="email-addon">
+                      <input name="usuario" class="form-control" placeholder="Nombre de usuario" aria-label="Usuario" aria-describedby="usuario-addon">
                     </div>
-                    <label>Contraseña</label>
+                    <label>Contraseña: </label>
                     <div class="mb-3">
                       <input type="password" name="pass" class="form-control" placeholder="Contraseña" aria-label="Password" aria-describedby="password-addon">
                     </div>

@@ -11,6 +11,9 @@ include("./partials/scripts.php");
 $consulta_promociones = mysqli_query($conn, "SELECT * FROM promociones");
 $consulta_imagenes = mysqli_query($conn, "SELECT imagen FROM promociones");
 
+date_default_timezone_set('America/Mexico_city');
+setlocale(LC_ALL, '');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -244,7 +247,7 @@ $consulta_imagenes = mysqli_query($conn, "SELECT imagen FROM promociones");
     </div>
 
     <!-- Modal para promociones -->
-    <div class="modal fade" id="modalAgregarEditarPromociones" tabindex="-1" aria-labelledby="staticBackdropLabelPromociones" aria-hidden="true" style="position: absolute !importanr; z-index: 999999999999 !important">
+    <div class="modal fade" id="modalAgregarEditarPromociones" tabindex="-1" aria-labelledby="staticBackdropLabelPromociones" aria-hidden="true">
       <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
@@ -254,6 +257,11 @@ $consulta_imagenes = mysqli_query($conn, "SELECT imagen FROM promociones");
             <form id="formModalPromociones" method="POST">
               <div class="modal-body">
                 <input type="hidden" id="idInputPromociones" name="id">
+                <div class="row">
+                  <div class="col-12 mb-3 text-center">
+                  <img id="imgPrev_editar" style="width: 500px !important; height: 250px !important;" accept="image/*" id="img_editar_foto" class="card-img-top" alt="">
+                  </div>
+                </div>
                 <div class="row">
                   <div class="col-12 mb-3">
                     <label for="imagenInputPromociones" class="form-label">Selecciona una imagen</label>
