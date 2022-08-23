@@ -138,6 +138,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         </center>
         <a class="btn" href="../../pages/cliente.php">Volver</a>
         <a style="color: red" class="btn" href="eliminar.php?id=<?php echo $fila['id']; ?>">ELIMINAR CUENTA</a>
+        <a style="color: green" class="btn" href="modificar_foto.php?id=<?php echo $fila['id']; ?>">Modificar Foto de Perfil</a>
     </div>
 </body>
 
