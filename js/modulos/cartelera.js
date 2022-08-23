@@ -1,5 +1,5 @@
 // Config general
-let ruta = "../php/cartelera";
+let ruta = "../php/cartelera/cartelera";
 
 // Agregar pelicula
 if (document.getElementById("formAgregar")) {
@@ -37,7 +37,7 @@ if (document.getElementById("formAgregar")) {
     formData.append("formato", formato);
     formData.append("imagen", imagenFile[0]);
 
-    fetch(`${ruta}/agregar.php`, {
+    fetch('../php/cartelera/agregar.php', {
         method: "POST",
         body: formData,
       })
@@ -80,7 +80,7 @@ let abrirEditar = (id) => {
     return check.checked = false;
   });
 
-  fetch(`${ruta}/traer_por_id.php`, {
+  fetch('../php/cartelera/traer_por_id.php', {
       method: "POST",
       body: JSON.stringify({id}),
       headers: { "Content-type": "aplication/json" },
@@ -165,7 +165,7 @@ function eliminar(id) {
         eliminar_pelicula = {
             id: id,
         };
-        fetch(`${ruta}/eliminar.php`, {
+        fetch('../php/cartelera/eliminar.php', {
             method: "POST",
             body: JSON.stringify(eliminar_pelicula),
             headers: { "Content-type": "aplication/json" },
