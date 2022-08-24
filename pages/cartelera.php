@@ -65,7 +65,7 @@ include("./partials/navbarvertical.php");
                         <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
                       </div>
                       <div class="modal-body">
-                        <form id="formAgregar" method="POST">
+                        <form id="formAgregar" action="../php/cartelera/agregar.php" method="POST">
                           <div class="row">
                             <div class="col-12 mb-3">
                               <label for="tituloPelicula" class="form-label">Título de la película</label>
