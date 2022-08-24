@@ -205,7 +205,7 @@ include("./partials/navbarvertical.php");
                                 </div>
                               </div>
                               <div class="ms-auto text-end mt-5">
-                                <a class="btn btn-link text-danger text-gradient px-3 mb-0" onclick="eliminar('<?php echo $row['id_cartelera'] ?>')" ><i class="far fa-trash-alt m-2"></i>Eliminar</a>
+                              <a class="btn btn-link text-danger text-gradient px-3 mb-0 eliminarPeli" data-id='<?php echo $row["id_cartelera"]; ?>'><i class="far fa-trash-alt me-2"></i>Eliminar</a>
                                 <button value="<?php echo $row['id_cartelera']; ?>" onclick="abrirEditar(<?php echo $row['id_cartelera']; ?>)"; class="btn btn-link text-dark px-3 mb-0" data-bs-toggle="modal" data-bs-target="#editar"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Editar</a>
                               </div>
                             </div>

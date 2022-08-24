@@ -150,48 +150,39 @@ if (document.getElementById("formEditar")) {
 }
 
 // Eliminar pelicula
-function eliminar(id) {
-    Swal.fire({
-        title: "¿Estás seguro que deseas eliminar la película?",
-        text: "No podras recuperar la información.",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#344767",
-        confirmButtonText: "Aceptar",
-        cancelButtonColor: "#cb0c9f",
-        cancelButtonText: "Cancelar",
-    }).then((result) => {
-        if (result.isConfirmed) {
-        eliminar_pelicula = {
-            id: id,
-        };
-        fetch('../php/cartelera/eliminar.php', {
-            method: "POST",
-            body: JSON.stringify(eliminar_pelicula),
-            headers: { "Content-type": "aplication/json" },
-        })
-            .then((res) => res.json())
-            .then((data) => {
-            if (data == "correcto") {
-                Swal.fire({
-                icon: "success",
-                title: "Película eliminada exitosamente",
-                showConfirmButton: false,
-                timer: 1500,
-                });
-                setTimeout(Reedireccion, 500);
-                function Reedireccion() {
+
+$(document).on("click", ".eliminarPeli", function () {
+  var id = $(this).data("id");
+
+  Swal.fire({
+      icon: "warning",
+      title: 'Eliminar tarjeta',
+      text: '¿Estás seguro de eliminar esta tarjeta? esta opción no se puede deshacer',
+      showCancelButton: true,
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Cancelar',
+  }).then((result) => {
+      if (result.value) {
+          $.post("../php/cartelera/eliminar.php", {
+              id: id
+          }, function () {
+              Swal.fire({
+                  icon: "success",
+                  title: 'Tarjeta eliminada',
+                  text: 'La tarjeta se ha eliminado correctamente',
+              });
+              setTimeout(Reedireccion, 500);
+              function Reedireccion() {
                 location.href = "./cartelera.php";
-                }
-            } else {
-                Swal.fire({
-                icon: "error",
-                title: "Error en el servidor",
-                showConfirmButton: false,
-                timer: 3000,
-                });
-            }
-            });
-        }
-    });
-}
+              }
+          });
+      } else {
+          Swal.fire({
+              icon: "error",
+              title: 'Cancelado',
+              text: 'La tarjeta no se ha eliminado',
+              confirmButtonText: 'Aceptar'
+          });
+      }
+  });
+});
