@@ -52,7 +52,7 @@ include("./partials/navbarvertical.php");
                 <p class="text-sm">Echa un vistazo a los más recientes lanzamientos</p>
               </div>
               <div>
-                <a class="btn btn-primary btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#agregarPeli">
+                <a class="btn btn-primary btn-sm mb-0" data-bs-toggle="modal" data-bs-target="#agregarPeli" title="Presione para agregar película">
                   <i class="fas fa-plus"></i>&nbsp;&nbsp;Agregar película
                 </a>
                 <!-- Modal para agregar película -->
@@ -65,6 +65,22 @@ include("./partials/navbarvertical.php");
                         <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
                       </div>
                       <div class="modal-body">
+                        <div class="" id="alertTarjeta">
+                          <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                            <symbol id="info-fill" fill="#fff" viewBox="0 0 16 16">
+                              <path
+                                d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+                            </symbol>
+                          </svg>
+                          <div class="alert alert-primary d-flex align-items-center" role="alert">
+                            <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+                              <use xlink:href="#info-fill" />
+                            </svg>
+                            <div style="color: #fff" id="alertTarjetaText">
+                              Por favor, ingrese todos los datos a continuación:
+                            </div>
+                          </div>
+                        </div>
                         <form id="formAgregar" action="../php/cartelera/agregar.php" method="POST">
                           <div class="row">
                             <div class="col-12 mb-3">
@@ -167,8 +183,8 @@ include("./partials/navbarvertical.php");
                         </div>
 
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary btn-sm mb-0" data-bs-dismiss="modal">Cerrar</button>
-                          <button type="submit" id="btnAgregar" class="btn btn-primary btn-sm mb-0">Agregar</button>
+                          <button type="button" class="btn btn-secondary btn-sm mb-0" data-bs-dismiss="modal" title="Presione para cerrar">Cerrar</button>
+                          <button type="submit" id="btnAgregar" class="btn btn-primary btn-sm mb-0" title="Presione para agregar película">Agregar</button>
                         </div>
                       </form>
                     </div>
@@ -205,8 +221,8 @@ include("./partials/navbarvertical.php");
                                 </div>
                               </div>
                               <div class="ms-auto text-end mt-5">
-                                <a class="btn btn-link text-danger text-gradient px-3 mb-0 eliminarPeli" data-id='<?php echo $row["id_cartelera"]; ?>'><i class="far fa-trash-alt me-2"></i>Eliminar</a>
-                                <a class="btn btn-link text-dark px-3 mb-0 editarPeli"
+                                <a class="btn btn-link text-danger text-gradient px-3 mb-0 eliminarPeli" data-id='<?php echo $row["id_cartelera"]; ?>' title="Eliminar película"><i class="far fa-trash-alt me-2"></i>Eliminar</a>
+                                <a title="Editar película" class="btn btn-link text-dark px-3 mb-0 editarPeli"
                                   data-id='<?php echo $row["id_cartelera"]; ?>'
                                   data-titulo='<?php echo $row["nombre"]; ?>'
                                   data-genero='<?php echo $row["genero"]; ?>'
@@ -227,9 +243,7 @@ include("./partials/navbarvertical.php");
                               <img class="w-65 position-relative z-index-2" style="border-radius:10px; margin-bottom:2rem;" src="../public/img/cartelera/<?php echo $row['imagen']; ?>" alt="<?php echo $row['imagen']; ?>">
                             </div>
                           </div>
-                         
-                          </div>
-                        
+                        </div>
                       <?php
                          }
                         }
@@ -303,6 +317,21 @@ include("./partials/navbarvertical.php");
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+              <div class="" id="alertTarjeta">
+                <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                  <symbol id="info-fill" fill="#fff" viewBox="0 0 16 16">
+                    <path
+                      d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+                  </symbol>
+                </svg>
+                <div class="alert alert-primary d-flex align-items-center" role="alert">
+                  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:">
+                    <use xlink:href="#info-fill" /></svg>
+                  <div style="color: #fff" id="alertTarjetaText">
+                    Actualice los datos de la película:
+                  </div>
+                </div>
+              </div>
               <form id="formEditar" action="../php/cartelera/editar.php" method="POST">
                 <input type="hidden" id="idEditar" name="id">
                 <div class="row">
@@ -404,8 +433,8 @@ include("./partials/navbarvertical.php");
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary btn-sm mb-0" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit" id="btnEditar" class="btn btn-primary btn-sm mb-0">Actualizar</button>
+                <button type="button" class="btn btn-secondary btn-sm mb-0" data-bs-dismiss="modal" title="Presione para cerrar">Cerrar</button>
+                <button type="submit" id="btnEditar" class="btn btn-primary btn-sm mb-0" title="Presione para actualizar película">Actualizar</button>
               </div>
               </form>
           </div>
