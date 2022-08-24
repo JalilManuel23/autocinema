@@ -83,7 +83,7 @@ setlocale(LC_ALL, '');
                           </div>
                         </td>                        
                         <td>
-                          <p class="text-xs font-weight-bold mb-0">$<?php echo number_format($comida['precio'], 2) ?></p>
+                          <p class="text-xs font-weight-bold mb-0">$<?php echo number_format($comida['precio'], 2) ?> MXN</p>
                         </td>
                         <td class="align-middle text-center text-sm">
                           <?php if ($comida['stock'] > 0) { ?>
@@ -146,7 +146,7 @@ setlocale(LC_ALL, '');
                                 </div>
                                 <div class="d-flex flex-column justify-content-center">
                                   <h6 class="mb-0 text-sm">Boleto | <?php echo $pelicula['nombre'] ?></h6>
-                                  <p class="text-xs text-secondary mb-0">Costo: $<?php echo number_format($boletos['precio'], 2) ?></p>
+                                  <p class="text-xs text-secondary mb-0">Costo: $<?php echo number_format($boletos['precio'], 2) ?> MXN</p>
                                 </div>
                               </div>
                             </td>
@@ -160,7 +160,7 @@ setlocale(LC_ALL, '');
                                 $fechaActual = strtotime("now");
                                 if ($boletos['stock'] <= 0 || $fechaBoletos < $fechaActual) { 
                               ?>
-                                <span class="badge badge-sm bg-gradient-secondary">Sin stock</span>
+                                <span class="badge badge-sm bg-gradient-secondary">No disponible</span>
                               <?php } else { ?>
                                 <span class="badge badge-sm bg-gradient-success">Disponible</span>
                               <?php } ?>

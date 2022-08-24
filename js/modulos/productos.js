@@ -46,6 +46,8 @@ $(document).on("click", ".addButton", function (e) {
     $("#btnSubmitPromociones").text("Agregar");
 
     $("#modalAgregarEditarPromociones").modal("show");
+
+    $("#imgPrev_editar").addClass("d-none");
   }
 });
 
@@ -94,7 +96,7 @@ $(document).on("click", ".editButton", function (e) {
     );
     $("#tituloModalPromociones").text("Editar promociones");
     $("#idInputPromociones").val($(this).data("id"));
-    // $("#imgPrev_editar").val($(this).data("imagen"));
+    $("#imgPrev_editar").removeClass("d-none");
     let foto = $(this).data("imagen");
     document.querySelector(
       "#imgPrev_editar"
@@ -122,15 +124,14 @@ $(document).on("click", ".deleteButton", function (e) {
 
   if (tabla == "comida") {
     Swal.fire({
-      title:
-        '<h1 style="font-family: Poppins; font-weight: 700;">Eliminar comida</h1>',
-      html: '<p style="font-family: Poppins">¿Estás seguro de eliminar esta comida? esta opción no se puede deshacer</p>',
+      title: "Eliminar comida",
+      text: "¿Estás seguro de eliminar esta comida? esta opción no se puede deshacer",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: '<a style="font-family: Poppins">Eliminar</a>',
-      confirmButtonColor: "#01bbcc",
-      cancelButtonText: '<a style="font-family: Poppins">Cancelar</a>',
-      cancelButtonColor: "#dc3545",
+      confirmButtonText: "Eliminar",
+      confirmButtonColor: "#344767",
+      cancelButtonText: "Cancelar",
+      cancelButtonColor: "#cb0c9f",
     }).then((result) => {
       if (result.value) {
         $.ajax({
@@ -142,24 +143,19 @@ $(document).on("click", ".deleteButton", function (e) {
             if (response == "error") {
               Swal.fire({
                 icon: "error",
-                title:
-                  '<h1 style="font-family: Poppins; font-weight: 700;">Ocurrio un error, intentalo más tarde</h1>',
-                confirmButtonText:
-                  '<a style="font-family: Poppins">Aceptar</a>',
-                confirmButtonColor: "#01bbcc",
+                title: "Ocurrio un error, intentalo más tarde",
+                confirmButtonText: "Aceptar",
+                confirmButtonColor: "#344767",
               });
             } else {
               Swal.fire({
                 icon: "success",
-                title:
-                  '<h1 style="font-family: Poppins; font-weight: 700;">Producto eliminado</h1>',
-                html: '<p style="font-family: Poppins">El producto se ha eliminado correctamente</p>',
-                confirmButtonText:
-                  '<a style="font-family: Poppins">Aceptar</a>',
-                confirmButtonColor: "#01bbcc",
+                title: "Producto eliminado",
+                text: "El producto se ha eliminado correctamente",
+                confirmButtonText: "Aceptar",
+                confirmButtonColor: "#344767",
               });
 
-              $("#bodyComida").empty();
               let trContenido = "";
               response.map((comida) => {
                 trContenido += `<tr class="align-middle">
@@ -195,6 +191,7 @@ $(document).on("click", ".deleteButton", function (e) {
                 </tr>`;
               });
 
+              $("#bodyComida").empty();
               $("#bodyComida").append(trContenido);
             }
           },
@@ -203,15 +200,14 @@ $(document).on("click", ".deleteButton", function (e) {
     });
   } else if (tabla == "boletos") {
     Swal.fire({
-      title:
-        '<h1 style="font-family: Poppins; font-weight: 700;">Eliminar producto</h1>',
-      html: '<p style="font-family: Poppins">¿Estás seguro de eliminar esta comida? esta opción no se puede deshacer</p>',
+      title: "Eliminar producto",
+      text: "¿Estás seguro de eliminar esta comida? esta opción no se puede deshacer",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: '<a style="font-family: Poppins">Eliminar</a>',
-      confirmButtonColor: "#01bbcc",
-      cancelButtonText: '<a style="font-family: Poppins">Cancelar</a>',
-      cancelButtonColor: "#dc3545",
+      confirmButtonText: "Eliminar",
+      confirmButtonColor: "#344767",
+      cancelButtonText: "Cancelar",
+      cancelButtonColor: "#cb0c9f",
     }).then((result) => {
       if (result.value) {
         $.ajax({
@@ -223,24 +219,19 @@ $(document).on("click", ".deleteButton", function (e) {
             if (response == "error") {
               Swal.fire({
                 icon: "error",
-                title:
-                  '<h1 style="font-family: Poppins; font-weight: 700;">Ocurrio un error, intentalo más tarde</h1>',
-                confirmButtonText:
-                  '<a style="font-family: Poppins">Aceptar</a>',
-                confirmButtonColor: "#01bbcc",
+                title: "Ocurrio un error, intentalo más tarde",
+                confirmButtonText: "Aceptar",
+                confirmButtonColor: "#344767",
               });
             } else {
               Swal.fire({
                 icon: "success",
-                title:
-                  '<h1 style="font-family: Poppins; font-weight: 700;">Boleto eliminado</h1>',
-                html: '<p style="font-family: Poppins">El boleto se ha eliminado correctamente</p>',
-                confirmButtonText:
-                  '<a style="font-family: Poppins">Aceptar</a>',
-                confirmButtonColor: "#01bbcc",
+                title: "Boleto eliminado",
+                text: "El boleto se ha eliminado correctamente",
+                confirmButtonText: "Aceptar",
+                confirmButtonColor: "#344767",
               });
 
-              $("#bodyBoletos").empty();
               let trContenido = "";
               response.map((boletos) => {
                 const meses = [
@@ -270,40 +261,43 @@ $(document).on("click", ".deleteButton", function (e) {
 
                 let hora = date.toLocaleString("en-US", options);
                 trContenido += `
-              <tr class="align-middle">
-                <td>
-                  <div class="d-flex px-2 py-1">
-                    <div>
-                      <img src="../assets/img/entradas.png" class="avatar avatar-sm me-3" alt="user1">
-                    </div>
-                    <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">Boleto | ${boletos.nombre}</h6>
-                      <p class="text-xs text-secondary mb-0">Costo: ${formatterMXN.format(
-                        boletos.precio
-                      )}</p>
-                    </div>
-                  </div>
-                </td>
-                <td class="text-center">
-                  <p class="text-xs font-weight-bold mb-0">${dia} de ${mes} a las ${hora}</p>                              
-                </td>
-                <td class="align-middle text-center text-sm">`;
+                  <tr class="align-middle">
+                    <td>
+                      <div class="d-flex px-2 py-1">
+                        <div>
+                          <img src="../assets/img/entradas.png" class="avatar avatar-sm me-3" alt="user1">
+                        </div>
+                        <div class="d-flex flex-column justify-content-center">
+                          <h6 class="mb-0 text-sm">Boleto | ${
+                            boletos.nombre
+                          }</h6>
+                          <p class="text-xs text-secondary mb-0">Costo: ${formatterMXN.format(
+                            boletos.precio
+                          )}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-center">
+                      <p class="text-xs font-weight-bold mb-0">${dia} de ${mes} a las ${hora}</p>                              
+                    </td>
+                    <td class="align-middle text-center text-sm">`;
                 let fechaBoletos = Date.parse(boletos.fecha_hora);
                 let fechaActual = Date.now();
                 if (boletos.stock <= 0 || fechaBoletos < fechaActual) {
-                  trContenido += `<span class="badge badge-sm bg-gradient-secondary">Sin stock</span>`;
+                  trContenido += `<span class="badge badge-sm bg-gradient-secondary">No disponible</span>`;
                 } else {
                   trContenido += `<span class="badge badge-sm bg-gradient-success">Disponible</span>`;
                 }
                 trContenido += `</td>
-                <td class="text-xs align-middle">
-                  <i style="cursor:pointer;" class="editButton fas fa-edit me-sm-1 fs-5 text-success" data-tabla="boletos" data-id="${boletos.id}" data-funcion="${boletos.id_cartelera}" data-fecha="${boletos.fecha_hora}" data-precio="${boletos.precio}" data-stock="${boletos.stock}"></i>
-                  <i style="cursor:pointer;" class="deleteButton fas fa-trash me-sm-1 fs-5 text-danger" data-tabla="boletos" data-id="${boletos.id}"></i>
-                </td>
-              </tr>
-            `;
+                    <td class="text-xs align-middle">
+                      <i style="cursor:pointer;" class="editButton fas fa-edit me-sm-1 fs-5 text-success" data-tabla="boletos" data-id="${boletos.id}" data-funcion="${boletos.id_cartelera}" data-fecha="${boletos.fecha_hora}" data-precio="${boletos.precio}" data-stock="${boletos.stock}"></i>
+                      <i style="cursor:pointer;" class="deleteButton fas fa-trash me-sm-1 fs-5 text-danger" data-tabla="boletos" data-id="${boletos.id}"></i>
+                    </td>
+                  </tr>
+                `;
               });
 
+              $("#bodyBoletos").empty();
               $("#bodyBoletos").append(trContenido);
             }
           },
@@ -312,15 +306,14 @@ $(document).on("click", ".deleteButton", function (e) {
     });
   } else if (tabla == "promociones") {
     Swal.fire({
-      title:
-        '<h1 style="font-family: Poppins; font-weight: 700;">Eliminar promocion</h1>',
-      html: '<p style="font-family: Poppins">¿Estás seguro de eliminar esta promocion? esta opción no se puede deshacer</p>',
+      title: "Eliminar promocion",
+      text: "¿Estás seguro de eliminar esta promocion? esta opción no se puede deshacer",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: '<a style="font-family: Poppins">Eliminar</a>',
-      confirmButtonColor: "#01bbcc",
-      cancelButtonText: '<a style="font-family: Poppins">Cancelar</a>',
-      cancelButtonColor: "#dc3545",
+      confirmButtonText: "Eliminar",
+      confirmButtonColor: "#344767",
+      cancelButtonText: "Cancelar",
+      cancelButtonColor: "#cb0c9f",
     }).then((result) => {
       if (result.value) {
         $.ajax({
@@ -332,21 +325,17 @@ $(document).on("click", ".deleteButton", function (e) {
             if (response == "error") {
               Swal.fire({
                 icon: "error",
-                title:
-                  '<h1 style="font-family: Poppins; font-weight: 700;">Ocurrio un error, intentalo más tarde</h1>',
-                confirmButtonText:
-                  '<a style="font-family: Poppins">Aceptar</a>',
-                confirmButtonColor: "#01bbcc",
+                title: "Ocurrio un error, intentalo más tarde",
+                confirmButtonText: "Aceptar",
+                confirmButtonColor: "#344767",
               });
             } else {
               Swal.fire({
                 icon: "success",
-                title:
-                  '<h1 style="font-family: Poppins; font-weight: 700;">promocion eliminada</h1>',
-                html: '<p style="font-family: Poppins">El promocion se ha eliminada correctamente</p>',
-                confirmButtonText:
-                  '<a style="font-family: Poppins">Aceptar</a>',
-                confirmButtonColor: "#01bbcc",
+                title: "promocion eliminada",
+                text: "El promocion se ha eliminada correctamente",
+                confirmButtonText: "Aceptar",
+                confirmButtonColor: "#344767",
               });
 
               let cardContenido = "";
@@ -448,7 +437,21 @@ $(document).on("click", ".deleteButton", function (e) {
               });
 
               $("#bodyPromociones").empty();
-              $("#bodyPromociones").append(cardContenido);
+              $("#bodyPromociones").append(
+                cardContenido +
+                  `
+                  <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
+                    <div style="cursor: pointer;" class="addButton card h-100 card-plain border" data-tabla="promociones" data-bs-toggle="modal" data-bs-target="#modalAgregarEditarPromociones">
+                      <div class="card-body d-flex flex-column justify-content-center text-center">
+                        <a href="javascript:;">
+                          <i class="fa fa-plus text-secondary mb-3"></i>
+                          <h5 class=" text-secondary"> Nueva Promoción </h5>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                `
+              );
 
               $("#carrouselPromociones").empty();
               $("#carrouselPromociones").append(carrousel);
@@ -479,30 +482,26 @@ $("#formModalComida").on("submit", function (e) {
         if (response == "error") {
           Swal.fire({
             icon: "error",
-            title:
-              '<h1 style="font-family: Poppins; font-weight: 700;">Ocurrio un error, intentalo más tarde</h1>',
-            confirmButtonText: '<a style="font-family: Poppins">Aceptar</a>',
-            confirmButtonColor: "#01bbcc",
+            title: "Ocurrio un error, intentalo más tarde",
+            confirmButtonText: "Aceptar",
+            confirmButtonColor: "#344767",
           });
         } else if (response == "vacio") {
           Swal.fire({
             icon: "warning",
-            title:
-              '<h1 style="font-family: Poppins; font-weight: 700;">Los campos no pueden estar vacios</h1>',
-            confirmButtonText: '<a style="font-family: Poppins">Aceptar</a>',
-            confirmButtonColor: "#01bbcc",
+            title: "Los campos no pueden estar vacios",
+            confirmButtonText: "Aceptar",
+            confirmButtonColor: "#344767",
           });
         } else {
           Swal.fire({
             icon: "success",
-            title:
-              '<h1 style="font-family: Poppins; font-weight: 700;">producto agregado</h1>',
-            html: '<p style="font-family: Poppins">La producto ha sido agregado correctamente</p>',
-            confirmButtonText: '<a style="font-family: Poppins">Aceptar</a>',
-            confirmButtonColor: "#01bbcc",
+            title: "producto agregado",
+            text: "La producto ha sido agregado correctamente",
+            confirmButtonText: "Aceptar",
+            confirmButtonColor: "#344767",
           });
 
-          $("#bodyComida").empty();
           let trContenido = "";
           response.map((comida) => {
             trContenido += `<tr class="align-middle">
@@ -538,36 +537,33 @@ $("#formModalComida").on("submit", function (e) {
                 </tr>`;
           });
 
+          $("#bodyComida").empty();
           $("#bodyComida").append(trContenido);
         }
       } else if (acc == "edit") {
         if (response == "error") {
           Swal.fire({
             icon: "error",
-            title:
-              '<h1 style="font-family: Poppins; font-weight: 700;">Ocurrio un error, intentalo más tarde</h1>',
-            confirmButtonText: '<a style="font-family: Poppins">Aceptar</a>',
-            confirmButtonColor: "#01bbcc",
+            title: "Ocurrio un error, intentalo más tarde",
+            confirmButtonText: "Aceptar",
+            confirmButtonColor: "#344767",
           });
         } else if (response == "vacio") {
           Swal.fire({
             icon: "warning",
-            title:
-              '<h1 style="font-family: Poppins; font-weight: 700;">Los campos no pueden estar vacios</h1>',
-            confirmButtonText: '<a style="font-family: Poppins">Aceptar</a>',
-            confirmButtonColor: "#01bbcc",
+            title: "Los campos no pueden estar vacios",
+            confirmButtonText: "Aceptar",
+            confirmButtonColor: "#344767",
           });
         } else {
           Swal.fire({
             icon: "success",
-            title:
-              '<h1 style="font-family: Poppins; font-weight: 700;">Producto actualizado</h1>',
-            html: '<p style="font-family: Poppins">El producto ha sido actualizado correctamente</p>',
-            confirmButtonText: '<a style="font-family: Poppins">Aceptar</a>',
-            confirmButtonColor: "#01bbcc",
+            title: "Producto actualizado",
+            text: "El producto ha sido actualizado correctamente",
+            confirmButtonText: "Aceptar",
+            confirmButtonColor: "#344767",
           });
 
-          $("#bodyComida").empty();
           let trContenido = "";
           response.map((comida) => {
             trContenido += `<tr class="align-middle">
@@ -603,6 +599,7 @@ $("#formModalComida").on("submit", function (e) {
                 </tr>`;
           });
 
+          $("#bodyComida").empty();
           $("#bodyComida").append(trContenido);
         }
       }
@@ -626,36 +623,33 @@ $("#formModalBoletos").on("submit", function (e) {
     cache: false,
     processData: false,
     success: function (response) {
+      console.log(response);
       $("#modalAgregarEditarBoletos").modal("hide");
       formularioBoletos.reset();
       if (acc == "new") {
         if (response == "error") {
           Swal.fire({
             icon: "error",
-            title:
-              '<h1 style="font-family: Poppins; font-weight: 700;">Ocurrio un error, intentalo más tarde</h1>',
-            confirmButtonText: '<a style="font-family: Poppins">Aceptar</a>',
-            confirmButtonColor: "#01bbcc",
+            title: "Ocurrio un error, intentalo más tarde",
+            confirmButtonText: "Aceptar",
+            confirmButtonColor: "#344767",
           });
         } else if (response == "vacio") {
           Swal.fire({
             icon: "warning",
-            title:
-              '<h1 style="font-family: Poppins; font-weight: 700;">Los campos no pueden estar vacios</h1>',
-            confirmButtonText: '<a style="font-family: Poppins">Aceptar</a>',
-            confirmButtonColor: "#01bbcc",
+            title: "Los campos no pueden estar vacios",
+            confirmButtonText: "Aceptar",
+            confirmButtonColor: "#344767",
           });
         } else {
           Swal.fire({
             icon: "success",
-            title:
-              '<h1 style="font-family: Poppins; font-weight: 700;">Boleto agregado</h1>',
-            html: '<p style="font-family: Poppins">El boleto ha sido agregado correctamente</p>',
-            confirmButtonText: '<a style="font-family: Poppins">Aceptar</a>',
-            confirmButtonColor: "#01bbcc",
+            title: "Boleto agregado",
+            text: "El boleto ha sido agregado correctamente",
+            confirmButtonText: "Aceptar",
+            confirmButtonColor: "#344767",
           });
 
-          $("#bodyBoletos").empty();
           let trContenido = "";
           response.map((boletos) => {
             const meses = [
@@ -706,7 +700,7 @@ $("#formModalBoletos").on("submit", function (e) {
             let fechaBoletos = Date.parse(boletos.fecha_hora);
             let fechaActual = Date.now();
             if (boletos.stock <= 0 || fechaBoletos < fechaActual) {
-              trContenido += `<span class="badge badge-sm bg-gradient-secondary">Sin stock</span>`;
+              trContenido += `<span class="badge badge-sm bg-gradient-secondary">No disponible</span>`;
             } else {
               trContenido += `<span class="badge badge-sm bg-gradient-success">Disponible</span>`;
             }
@@ -719,36 +713,33 @@ $("#formModalBoletos").on("submit", function (e) {
             `;
           });
 
+          $("#bodyBoletos").empty();
           $("#bodyBoletos").append(trContenido);
         }
       } else if (acc == "edit") {
         if (response == "error") {
           Swal.fire({
             icon: "error",
-            title:
-              '<h1 style="font-family: Poppins; font-weight: 700;">Ocurrio un error, intentalo más tarde</h1>',
-            confirmButtonText: '<a style="font-family: Poppins">Aceptar</a>',
-            confirmButtonColor: "#01bbcc",
+            title: "Ocurrio un error, intentalo más tarde",
+            confirmButtonText: "Aceptar",
+            confirmButtonColor: "#344767",
           });
         } else if (response == "vacio") {
           Swal.fire({
             icon: "warning",
-            title:
-              '<h1 style="font-family: Poppins; font-weight: 700;">Los campos no pueden estar vacios</h1>',
-            confirmButtonText: '<a style="font-family: Poppins">Aceptar</a>',
-            confirmButtonColor: "#01bbcc",
+            title: "Los campos no pueden estar vacios",
+            confirmButtonText: "Aceptar",
+            confirmButtonColor: "#344767",
           });
         } else {
           Swal.fire({
             icon: "success",
-            title:
-              '<h1 style="font-family: Poppins; font-weight: 700;">Producto actualizado</h1>',
-            html: '<p style="font-family: Poppins">El producto ha sido actualizado correctamente</p>',
-            confirmButtonText: '<a style="font-family: Poppins">Aceptar</a>',
-            confirmButtonColor: "#01bbcc",
+            title: "Boleto actualizado",
+            text: "El boleto ha sido actualizado correctamente",
+            confirmButtonText: "Aceptar",
+            confirmButtonColor: "#344767",
           });
 
-          $("#bodyBoletos").empty();
           let trContenido = "";
           response.map((boletos) => {
             const meses = [
@@ -799,7 +790,7 @@ $("#formModalBoletos").on("submit", function (e) {
             let fechaBoletos = Date.parse(boletos.fecha_hora);
             let fechaActual = Date.now();
             if (boletos.stock <= 0 || fechaBoletos < fechaActual) {
-              trContenido += `<span class="badge badge-sm bg-gradient-secondary">Sin stock</span>`;
+              trContenido += `<span class="badge badge-sm bg-gradient-secondary">No disponible</span>`;
             } else {
               trContenido += `<span class="badge badge-sm bg-gradient-success">Disponible</span>`;
             }
@@ -812,6 +803,7 @@ $("#formModalBoletos").on("submit", function (e) {
             `;
           });
 
+          $("#bodyBoletos").empty();
           $("#bodyBoletos").append(trContenido);
         }
       }
@@ -840,27 +832,25 @@ $("#formModalPromociones").on("submit", function (e) {
         if (response == "error") {
           Swal.fire({
             icon: "error",
-            title:
-              '<h1 style="font-family: Poppins; font-weight: 700;">Ocurrio un error, intentalo más tarde</h1>',
-            confirmButtonText: '<a style="font-family: Poppins">Aceptar</a>',
-            confirmButtonColor: "#01bbcc",
+            title: "Ocurrio un error, intentalo más tarde",
+            confirmButtonText: "Aceptar",
+            confirmButtonColor: "#344767",
           });
         } else if (response == "vacio") {
           Swal.fire({
             icon: "warning",
-            title:
-              '<h1 style="font-family: Poppins; font-weight: 700;">Los campos no pueden estar vacios</h1>',
-            confirmButtonText: '<a style="font-family: Poppins">Aceptar</a>',
-            confirmButtonColor: "#01bbcc",
+            title: "Los campos no pueden estar vacios",
+            confirmButtonText: "Aceptar",
+            confirmButtonColor: "#344767",
           });
         } else {
           Swal.fire({
             icon: "success",
-            title:
-              '<h1 style="font-family: Poppins; font-weight: 700;">Promoción agregada</h1>',
-            html: '<p style="font-family: Poppins">La promoción ha sido agregada correctamente</p>',
-            confirmButtonText: '<a style="font-family: Poppins">Aceptar</a>',
-            confirmButtonColor: "#01bbcc",
+            title: "Promoción agregada",
+            text: "La promoción ha sido agregada correctamente",
+            confirmButtonText: "Aceptar",
+            confirmButtonColor: "#344767",
+            showConfirmButton: false,
           });
 
           let cardContenido = "";
@@ -962,7 +952,21 @@ $("#formModalPromociones").on("submit", function (e) {
           });
 
           $("#bodyPromociones").empty();
-          $("#bodyPromociones").append(cardContenido);
+          $("#bodyPromociones").append(
+            cardContenido +
+              `
+              <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
+                <div style="cursor: pointer;" class="addButton card h-100 card-plain border" data-tabla="promociones" data-bs-toggle="modal" data-bs-target="#modalAgregarEditarPromociones">
+                  <div class="card-body d-flex flex-column justify-content-center text-center">
+                    <a href="javascript:;">
+                      <i class="fa fa-plus text-secondary mb-3"></i>
+                      <h5 class=" text-secondary"> Nueva Promoción </h5>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            `
+          );
 
           $("#carrouselPromociones").empty();
           $("#carrouselPromociones").append(carrousel);
@@ -971,27 +975,25 @@ $("#formModalPromociones").on("submit", function (e) {
         if (response == "error") {
           Swal.fire({
             icon: "error",
-            title:
-              '<h1 style="font-family: Poppins; font-weight: 700;">Ocurrio un error, intentalo más tarde</h1>',
-            confirmButtonText: '<a style="font-family: Poppins">Aceptar</a>',
-            confirmButtonColor: "#01bbcc",
+            title: "Ocurrio un error, intentalo más tarde",
+            confirmButtonText: "Aceptar",
+            confirmButtonColor: "#344767",
           });
         } else if (response == "vacio") {
           Swal.fire({
             icon: "warning",
-            title:
-              '<h1 style="font-family: Poppins; font-weight: 700;">Los campos no pueden estar vacios</h1>',
-            confirmButtonText: '<a style="font-family: Poppins">Aceptar</a>',
-            confirmButtonColor: "#01bbcc",
+            title: "Los campos no pueden estar vacios",
+            confirmButtonText: "Aceptar",
+            confirmButtonColor: "#344767",
           });
         } else {
           Swal.fire({
             icon: "success",
-            title:
-              '<h1 style="font-family: Poppins; font-weight: 700;">Promocion actualizada</h1>',
-            html: '<p style="font-family: Poppins">La promocion ha sido actualizada correctamente</p>',
-            confirmButtonText: '<a style="font-family: Poppins">Aceptar</a>',
-            confirmButtonColor: "#01bbcc",
+            title: "Promocion actualizada",
+            text: "La promocion ha sido actualizada correctamente",
+            confirmButtonText: "Aceptar",
+            confirmButtonColor: "#344767",
+            showConfirmButton: false,
           });
 
           let cardContenido = "";
@@ -1093,10 +1095,27 @@ $("#formModalPromociones").on("submit", function (e) {
           });
 
           $("#bodyPromociones").empty();
-          $("#bodyPromociones").append(cardContenido);
+          $("#bodyPromociones").append(
+            cardContenido +
+              `
+              <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
+                <div style="cursor: pointer;" class="addButton card h-100 card-plain border" data-tabla="promociones" data-bs-toggle="modal" data-bs-target="#modalAgregarEditarPromociones">
+                  <div class="card-body d-flex flex-column justify-content-center text-center">
+                    <a href="javascript:;">
+                      <i class="fa fa-plus text-secondary mb-3"></i>
+                      <h5 class=" text-secondary"> Nueva Promoción </h5>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            `
+          );
 
           $("#carrouselPromociones").empty();
           $("#carrouselPromociones").append(carrousel);
+          setInterval(() => {
+            location.reload();
+          }, 2000);
         }
       }
     },
@@ -1257,11 +1276,10 @@ $(document).on("click", ".enviarPromo", function (e) {
     e.preventDefault();
     Swal.fire({
       icon: "success",
-      title:
-        '<h1 style="font-family: Poppins; font-weight: 700;">Promoción enviada</h1>',
-      html: '<p style="font-family: Poppins">La promoción se ha enviado correctamente a los usuarios listados</p>',
-      confirmButtonText: '<a style="font-family: Poppins">Aceptar</a>',
-      confirmButtonColor: "#01bbcc",
+      title: "Promoción enviada",
+      text: "La promoción se ha enviado correctamente a los usuarios listados",
+      confirmButtonText: "Aceptar",
+      confirmButtonColor: "#344767",
     });
   });
 });

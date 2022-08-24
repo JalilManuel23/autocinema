@@ -13,16 +13,15 @@
 		if ($insert) {
 			$boletos = array();
             $select_boletos = mysqli_query($conn, "SELECT * FROM boletos");
-            $select_cartelera = mysqli_query($conn, "SELECT * FROM cartelera WHERE id_cartelera = $id_cartelera");
             $i = 0;
             foreach ($select_boletos as $boleto) {
-                $boletos[] = $boleto;
+                $boletos[$i] = $boleto;
+                $id_cartelera = $boleto['id_cartelera'];
+                $select_cartelera = mysqli_query($conn, "SELECT * FROM cartelera WHERE id_cartelera = $id_cartelera");
 
-                if($i == 0){
-                    foreach ($select_cartelera as $cartelera) {                    
-                        $boletos[] = $cartelera;
+                    foreach ($select_cartelera as $cartelera) {
+                            $boletos[$i] += $cartelera;
                     }
-                }
 
                 $i++;
             }
