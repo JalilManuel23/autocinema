@@ -1,7 +1,7 @@
 <?php
 // Conexión a BD
 include("../php/conexion.php");
-$activo = "productos";
+$activo = "Productos";
 
 $consulta_comida = mysqli_query($conn, "SELECT * FROM comida");
 $consulta_boletos = mysqli_query($conn, "SELECT * FROM boletos");
