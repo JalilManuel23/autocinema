@@ -205,8 +205,18 @@ include("./partials/navbarvertical.php");
                                 </div>
                               </div>
                               <div class="ms-auto text-end mt-5">
-                              <a class="btn btn-link text-danger text-gradient px-3 mb-0 eliminarPeli" data-id='<?php echo $row["id_cartelera"]; ?>'><i class="far fa-trash-alt me-2"></i>Eliminar</a>
-                                <button value="<?php echo $row['id_cartelera']; ?>" onclick="abrirEditar(<?php echo $row['id_cartelera']; ?>)"; class="btn btn-link text-dark px-3 mb-0" data-bs-toggle="modal" data-bs-target="#editar"><i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Editar</a>
+                                <a class="btn btn-link text-danger text-gradient px-3 mb-0 eliminarPeli" data-id='<?php echo $row["id_cartelera"]; ?>'><i class="far fa-trash-alt me-2"></i>Eliminar</a>
+                                <a class="btn btn-link text-dark px-3 mb-0 editarPeli"
+                                  data-id='<?php echo $row["id_cartelera"]; ?>'
+                                  data-titulo='<?php echo $row["nombre"]; ?>'
+                                  data-genero='<?php echo $row["genero"]; ?>'
+                                  data-sinopsis='<?php echo $row["descripcion"]; ?>'
+                                  data-idioma='<?php echo $row["idioma"]; ?>'
+                                  data-duracion='<?php echo $row["duracion"]; ?>'
+                                  data-formato='<?php echo $row["formato"]; ?>'
+                                  data-imagen='<?php echo $row["imagen"]; ?>'
+                                  <i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Editar
+                                </a>
                               </div>
                             </div>
                           </div>
@@ -285,7 +295,7 @@ include("./partials/navbarvertical.php");
         </div>
       </div>
       <!-- Modal para editar películas -->
-      <div class="modal fade" id="editar" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"   style="position: absolute !importanr; z-index: 999999999999 !important">
+      <div class="modal fade modalEditar" id="editar" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true"   style="position: absolute !importanr; z-index: 999999999999 !important">
         <div class="modal-dialog modal-lg modal-dialog-centered ">
           <div class="modal-content">
             <div class="modal-header">
@@ -293,17 +303,17 @@ include("./partials/navbarvertical.php");
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form id="formEditar" method="POST">
+              <form id="formEditar" action="../php/cartelera/editar.php" method="POST">
                 <input type="hidden" id="idEditar" name="id">
                 <div class="row">
                   <div class="col-12 mb-3">
-                    <label for="formFile" class="form-label">Título de la imagen</label>
+                    <label for="formFile" class="form-label">Título</label>
                     <input class="form-control" class="form-control" id="tituloPeliculaEditar" name="nombre" rows="8" value="" required>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12 mb-3 text-center">
-                  <img id="imgPrev_editar" style="width: 300px !important; height: 250px !important;" accept="image/*" id="img_editar_foto" class="card-img-top" alt="">
+                  <img id="imgPrev_editar" style="width: 300px !important; height: 250px !important;" accept="image/*" class="card-img-top" alt="">
                   </div>
                 </div>
                 <div class="row">
@@ -366,10 +376,6 @@ include("./partials/navbarvertical.php");
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col mb-3">
-                    <label for="horarioPeliculaEditar" class="form-label">Horario</label>
-                    <input type="time" class="form-control" id="horarioPeliculaEditar" aria-describedby="Horario Película" name="horarioPelicula" required>
-                  </div>
                   <div class="col mb-3">
                     <label for="idiomaPeliculaEditar" class="form-label">Idioma</label>
                     <select id="idiomaPeliculaEditar" class="form-control" name="idioma" required>
