@@ -87,7 +87,7 @@ $(document).ready(function () {
 
     // Evento on submit para las tarjetas
     $("#tarjetaForm").on("submit", function (e) {
-        e.preventDefault();
+        e.preventDefault(); 
         $.post({
             url: $(this).attr('action'),
             data: new FormData(this),
