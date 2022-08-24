@@ -15,6 +15,7 @@ $(document).ready(function () {
               title: 'Pelicula agregada correctamente',
               text: 'La pelicula ha sido agregada correctamente',
               confirmButtonText: 'Aceptar',
+              confirmButtonColor: "#cb0c9f",
           });
           setTimeout(Reedireccion, 500);
           function Reedireccion() {
@@ -27,6 +28,7 @@ $(document).ready(function () {
                 title: 'Error al añadir pelicula',
                 text: 'Lo sentimos, hubo un error al añadir la pelicula',
                 confirmButtonText: 'Aceptar',
+                confirmButtonColor: "#cb0c9f",
             });
         },
     });
@@ -94,6 +96,7 @@ $(document).ready(function () {
               title: 'Pelicula editada correctamente',
               text: 'La pelicula ha sido editada correctamente',
               confirmButtonText: 'Aceptar',
+              confirmButtonColor: "#cb0c9f",
           });
           setTimeout(Reedireccion, 500);
           function Reedireccion() {
@@ -106,6 +109,7 @@ $(document).ready(function () {
                 title: 'Error al editar pelicula',
                 text: 'Lo sentimos, hubo un error al editar la pelicula',
                 confirmButtonText: 'Aceptar',
+                confirmButtonColor: "#cb0c9f",
             });
         },
     });
@@ -122,7 +126,9 @@ $(document).ready(function () {
         text: '¿Estás seguro de eliminar esta pelicula? esta opción no se puede deshacer',
         showCancelButton: true,
         confirmButtonText: 'Eliminar',
+        confirmButtonColor: "#cb0c9f",
         cancelButtonText: 'Cancelar',
+        cancelButtonColor: "#344767"
     }).then((result) => {
         if (result.value) {
             $.post("../php/cartelera/eliminar.php", {
@@ -143,7 +149,8 @@ $(document).ready(function () {
                 icon: "error",
                 title: 'Cancelado',
                 text: 'La pelicula no se ha eliminado',
-                confirmButtonText: 'Aceptar'
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: "#cb0c9f",
             });
         }
     });
