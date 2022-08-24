@@ -3,7 +3,7 @@
 include("../php/conexion.php");
 include("./partials/head.php");
 
-$activo = "dashboard";
+$activo = "Dashboard";
 include("./partials/navbarvertical.php");
 
 ?>

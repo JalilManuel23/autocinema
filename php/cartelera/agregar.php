@@ -1,17 +1,17 @@
 <?php
 	include '../conexion.php';
 	
-	$foto = $_FILES['imagen'];
+	$foto = $_FILES['img'];
 	$nuevaRuta = "../../public/img/cartelera/".$foto['name'];
 	$tmp_name = $foto["tmp_name"];
 	$name = $foto['name'];
-    $genero = $_POST['genero'];
+    $genero = $_POST['generoPelicula'];
     $nombrePelicula = $_POST['tituloPelicula'];
-    $sinopsis = $_POST['sinopsis'];
-    $horario = $_POST['horario'];
-    $idioma = $_POST['idioma'];
-    $duracion = $_POST['duracion'];
-    $formato = $_POST['formato'];
+    $sinopsis = $_POST['descripcion'];
+    $horario = $_POST['horarioPelicula'];
+    $idioma = $_POST['idiomaPelicula'];
+    $duracion = $_POST['duracionPelicula'];
+    $formato = $_POST['formatoPelicula'];
 
 	$sql = "INSERT INTO cartelera (imagen, genero, nombre, descripcion, horario, idioma, duracion, formato) VALUES ('$name','$genero', '$nombrePelicula', '$sinopsis', '$horario', '$idioma', '$duracion', '$formato')";
 	$res = mysqli_query($conn, $sql);

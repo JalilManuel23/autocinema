@@ -1,105 +1,71 @@
-// Config general
-let ruta = "../php/cartelera";
+$(document).ready(function () {
 
-// Agregar pelicula
-if (document.getElementById("formAgregar")) {
-  document.getElementById("btnAgregar").addEventListener("click", (e) => {
-  e.preventDefault();
-
-  let tituloPelicula = $("#tituloPelicula").val();
-  let tituloImg = $("#tituloImg").val();
-  let genero = $("#generoPelicula").val();
-  let sinopsis = $("#sinopsisPelicula").val();
-  let horario = $("#horarioPelicula").val();
-  let idioma = $("#idiomaPelicula").val();
-  let duracion = $("#duracionPelicula").val();
-  let formato = $("#formatoPelicula").val();
-  let imagen = $("#imgAñadir").val();
-  let imagenFile = $("#imgAñadir").prop("files");
-
-  // Valida que vayan todos los datos
-  if(
-    tituloPelicula != "" && tituloImg != "" &&
-    genero != "" && sinopsis != "" &&
-    horario != "" && idioma != "" &&
-    duracion != "" && formato != "" && imagen != ""
-  ) {
-
-    // Si se envian todos los datos los envia a PHP para que los agregué a la BD
-    var formData = new FormData();
-    formData.append("tituloPelicula", tituloPelicula);
-    formData.append("tituloImg", tituloImg);
-    formData.append("genero", genero);
-    formData.append("sinopsis", sinopsis);
-    formData.append("horario", horario);
-    formData.append("idioma", idioma);
-    formData.append("duracion", duracion);
-    formData.append("formato", formato);
-    formData.append("imagen", imagenFile[0]);
-
-    fetch(`${ruta}/agregar.php`, {
-        method: "POST",
-        body: formData,
-      })
-      .then((response) => response.json())
-      .then((response) => {
-        if (response == "correcto") {
+  // Agregar pelicula
+  $("#formAgregar").on("submit", function (e) {
+    e.preventDefault();
+    $("#agregarPeli").modal("hide");
+    $.post({
+        url: $(this).attr('action'),
+        data: new FormData(this),
+        processData: false,
+        contentType: false,
+        success: function (res) {
           Swal.fire({
-              position: "center",
               icon: "success",
-              title: "Película agregada exitosamente",
-              showConfirmButton: !1,
-              timer: 1500,
+              title: 'Pelicula agregada correctamente',
+              text: 'La pelicula ha sido agregada correctamente',
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: "#cb0c9f",
+          });
+          setTimeout(Reedireccion, 500);
+          function Reedireccion() {
+            location.href = "./cartelera.php";
+          }
+        },
+        error: function (e) {
+            Swal.fire({
+                icon: "error",
+                title: 'Error al añadir pelicula',
+                text: 'Lo sentimos, hubo un error al añadir la pelicula',
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: "#cb0c9f",
             });
-            setTimeout(Reedireccion, 500);
-            function Reedireccion() {
-              location.href = "./cartelera.php";
-            }
-        }
-      });
-    } else {
-      Swal.fire({
-        position: "center",
-        icon: "error",
-        title: "Faltan datos",
-        showConfirmButton: !1,
-        timer: 1500,
-      });
-      setTimeout(Reedireccion, 1000);
-      function Reedireccion() {
-        location.href = "./cartelera.php";
-      }
-    }
-  });
-}
+        },
+    });
+});
+ 
 
-// Editar pelicula
-let abrirEditar = (id) => {
-  let checks = document.querySelectorAll('.check-peli');
-  Array.from(checks).map((check) => {
-    return check.checked = false;
-  });
+  // Abrir modal Editar pelicula
+  $(document).on("click", ".editarPeli", function () {
+    let checks = document.querySelectorAll('.check-peli');
+    Array.from(checks).map((check) => {
+      return check.checked = false;
+    });
 
-  fetch(`${ruta}/traer_por_id.php`, {
-      method: "POST",
-      body: JSON.stringify({id}),
-      headers: { "Content-type": "aplication/json" },
-  })
-  .then((res) => res.json())
-  .then((data) => {
-    let {id_cartelera, imagen, genero, nombre, descripcion, duracion, formato, horario, idioma} = data;
-
-    document.querySelector("#idEditar").value = id_cartelera;
-    document.querySelector("#tituloEditar").innerText = nombre;
-    document.querySelector("#tituloPeliculaEditar").value = nombre;
-    document.querySelector("#imgPrev_editar").src = `../public/img/cartelera/${imagen}`;
-    document.querySelector("#horarioPeliculaEditar").value = horario;
+    var id = $(this).data("id");
+    var titulo = $(this).data("titulo");
+    var genero = $(this).data("genero");
+    var sinopsis = $(this).data("sinopsis");
+    var idioma = $(this).data("idioma");
+    var duracion = $(this).data("duracion");
+    var formato = $(this).data("formato");
+    var imagen = $(this).data("imagen");
 
     let generosS = genero.split(",");
 
     generosS.map((gen) => {
       document.getElementById(gen).checked = true;
     });
+
+    $(".modalEditar").modal("show");
+
+    document.querySelector("#idEditar").value = id;
+
+    document.querySelector("#tituloEditar").innerHTML = 'Editar ' + titulo;
+
+    document.querySelector("#tituloPeliculaEditar").value = titulo;
+
+    document.querySelector("#imgPrev_editar").src = "../public/img/cartelera/" + imagen;
 
     document.querySelector("#seleccionada").value = idioma;
     document.querySelector("#seleccionada").innerHTML = idioma;
@@ -112,86 +78,81 @@ let abrirEditar = (id) => {
     document.querySelector("#noSeleccionadaFormato").innerHTML = (formato == "2D") ? "3D" : "2D";
 
     document.querySelector("#duracionPeliculaEditar").value = duracion;
-    document.querySelector("#descripcionInputEditar").innerText = descripcion;
-  });
-}
+    document.querySelector("#descripcionInputEditar").innerText = sinopsis;
 
-if (document.getElementById("formEditar")) {
-  document.getElementById("btnEditar").addEventListener("click", (e) => {
+  });
+
+  $("#formEditar").on("submit", function (e) {
     e.preventDefault();
-    const formEditar = document.getElementById("formEditar");
-    let formulario = new FormData(formEditar);
-
-    fetch(`${ruta}/editar.php`, {
-      method: "POST",
-      body: formulario,
-    })
-    .then((response) => response.json())
-    .then((response) => {
-      if (response == "correcto") {
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Película actualizada",
-          showConfirmButton: !1,
-          timer: 1500,
-        });
-        setTimeout(Reedireccion, 500);
-        function Reedireccion() {
-          location.href = "./cartelera.php";
-        }
-      } else if (response == "vacio") {
-        Swal.fire("Error!", "Datos vacíos", "error");
-      } else if (response == "error") {
-        Swal.fire("Error!", "Error en el servidor", "error");
-      }
+    $(".modalEditar").modal("hide");
+    $.post({
+        url: $(this).attr('action'),
+        data: new FormData(this),
+        processData: false,
+        contentType: false,
+        success: function (res) {
+          Swal.fire({
+              icon: "success",
+              title: 'Pelicula editada correctamente',
+              text: 'La pelicula ha sido editada correctamente',
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: "#cb0c9f",
+          });
+          setTimeout(Reedireccion, 500);
+          function Reedireccion() {
+            location.href = "./cartelera.php";
+          }
+        },
+        error: function (e) {
+            Swal.fire({
+                icon: "error",
+                title: 'Error al editar pelicula',
+                text: 'Lo sentimos, hubo un error al editar la pelicula',
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: "#cb0c9f",
+            });
+        },
     });
-  });
-}
+});
 
-// Eliminar pelicula
-function eliminar(id) {
+  // Eliminar pelicula
+
+  $(document).on("click", ".eliminarPeli", function () {
+    var id = $(this).data("id");
+
     Swal.fire({
-        title: "¿Estás seguro que deseas eliminar la película?",
-        text: "No podras recuperar la información.",
         icon: "warning",
+        title: 'Eliminar Pelicula',
+        text: '¿Estás seguro de eliminar esta pelicula? esta opción no se puede deshacer',
         showCancelButton: true,
-        confirmButtonColor: "#344767",
-        confirmButtonText: "Aceptar",
-        cancelButtonColor: "#cb0c9f",
-        cancelButtonText: "Cancelar",
+        confirmButtonText: 'Eliminar',
+        confirmButtonColor: "#cb0c9f",
+        cancelButtonText: 'Cancelar',
+        cancelButtonColor: "#344767"
     }).then((result) => {
-        if (result.isConfirmed) {
-        eliminar_pelicula = {
-            id: id,
-        };
-        fetch(`${ruta}/eliminar.php`, {
-            method: "POST",
-            body: JSON.stringify(eliminar_pelicula),
-            headers: { "Content-type": "aplication/json" },
-        })
-            .then((res) => res.json())
-            .then((data) => {
-            if (data == "correcto") {
+        if (result.value) {
+            $.post("../php/cartelera/eliminar.php", {
+                id: id
+            }, function () {
                 Swal.fire({
-                icon: "success",
-                title: "Película eliminada exitosamente",
-                showConfirmButton: false,
-                timer: 1500,
+                    icon: "success",
+                    title: 'Pelicula eliminada',
+                    text: 'La pelicula se ha eliminado correctamente',
                 });
                 setTimeout(Reedireccion, 500);
                 function Reedireccion() {
-                location.href = "./cartelera.php";
+                  location.href = "./cartelera.php";
                 }
-            } else {
-                Swal.fire({
+            });
+        } else {
+            Swal.fire({
                 icon: "error",
-                title: "Error en el servidor",
-                showConfirmButton: false,
-                timer: 3000,
-                });
-            }
+                title: 'Cancelado',
+                text: 'La pelicula no se ha eliminado',
+                confirmButtonText: 'Aceptar',
+                confirmButtonColor: "#cb0c9f",
             });
         }
     });
-}
+  });
+});
