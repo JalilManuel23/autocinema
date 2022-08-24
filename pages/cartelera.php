@@ -15,7 +15,7 @@ Equipo: Cartelera
 include("../php/conexion.php");
 include("./partials/head.php");
 
-$activo = "cartelera";
+$activo = "Cartelera";
 include("./partials/navbarvertical.php");
 
 ?>

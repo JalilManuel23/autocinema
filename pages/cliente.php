@@ -4,7 +4,7 @@ session_start();
 
 include '../php/conexion.php';
 include 'partials/head.php';
-$activo = "cliente";
+$activo = "Perfil";
 include 'partials/navbarvertical.php';
 include 'partials/scripts.php';
 
